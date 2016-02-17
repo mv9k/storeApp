@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28baf027-a4b3-4962-a3b1-2af9e59012b5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storeApp/resources/iconOLD.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storeApp/resources/ios/icon/iconOLD.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storeApp/resources/icon.png" afterPath="$PROJECT_DIR$/storeApp/resources/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storeApp/resources/ios/icon/icon.png" afterPath="$PROJECT_DIR$/storeApp/resources/ios/icon/icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/storeApp.iml" afterPath="$PROJECT_DIR$/.idea/storeApp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storeApp/www/templates/tab-favs.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storeApp/www/templates/tabs.html" afterPath="$PROJECT_DIR$/storeApp/www/templates/tabs.html" />
     </list>
     <ignored path="storeApp.iws" />
@@ -34,6 +29,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.115385">
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tab-favs.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storeApp/www/templates/tab-favs.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154">
+              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tab-chats.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storeApp/www/templates/tab-chats.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,8 +97,8 @@
       <file leaf-file-name="tabs.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/storeApp/www/templates/tabs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5989933">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5704698">
+              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -101,6 +116,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -109,6 +131,7 @@
       <list>
         <option value="$PROJECT_DIR$/storeApp/config.xml" />
         <option value="$PROJECT_DIR$/storeApp/www/templates/tabs.html" />
+        <option value="$PROJECT_DIR$/storeApp/www/templates/favs.html" />
       </list>
     </option>
   </component>
@@ -231,6 +254,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="editor.config.accepted" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -462,14 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storeApp/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storeApp/www/templates/chat-detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -478,10 +494,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/storeApp/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storeApp/www/templates/tab-chats.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storeApp/www/templates/tab-favs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/storeApp/www/templates/tabs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5989933">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5704698">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
           <folding />
         </state>
       </provider>
