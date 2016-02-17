@@ -1,1 +1,16 @@
 /* Empty. Add your own CSS if you like */
+.bord{
+  border-radius: 10px;
+  border: solid white 3px;
+  padding: 10px;
+  background-color: white;
+}
+
+.txtBord{
+  border: solid lightgrey 1px;
+  font-size: x-large;
+}
+.profileImg{
+  width: 50px;
+  border-radius: 100%;
+}

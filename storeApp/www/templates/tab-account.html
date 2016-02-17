@@ -1,36 +1,43 @@
-<ion-view view-title="Store App" style="text-align: center;">
+<ion-view view-title="Store App" style="text-align: center; background-color: lightgrey">
   <ion-content class="padding">
-    <div ng-if="!ac.isLoggedIn">
-      <h1>Log in</h1>
-      <br>
-      <ng-form >
-        <label class="item item-input">
-          <input type="text" placeholder="Username or Email" ng-model="ac.email"/>
-        </label>
-        <br>
-        <label class="item item-input">
-          <input type="text" placeholder="Password" ng-model="ac.password"/>
-        </label>
-        <br>
-        <button class="button button-block button-calm" ng-click="ac.logIn()">
-          Log in
-        </button>
-        <button class="button button-block button-balanced">
-          Sign in with Amazon
-        </button>
-        <button class="button button-block button-positive">
-          Sign in with Facebook
-        </button>
-        <br>
-        <button class="button button-block button-outline button-assertive" ng-click="ac.createAcc()">
-          Create an Account
-        </button>
+    <div ng-if="!ac.isLoggedIn && !a.isCreatingAcc">
+      <ng-form>
+        <div class="bord">
+          <h1>Log in</h1>
+          <br>
+          <span style="color: red" id="err"></span>
+          <label class="item item-input txtBord" id="emailBox">
+            <input class="txtBord emailReq" type="email" placeholder="Username or Email" ng-model="ac.email"/>
+          </label>
+          <br>
+          <label class="item item-input txtBord" id="passBox">
+            <input class="txtBord passReq" type="text" placeholder="Password" ng-model="ac.password"/>
+          </label>
+          <br>
+          <button class="button button-block button-positive" ng-click="ac.logIn()">
+            Log in
+          </button>
+          <button class="button button-block button-assertive" ng-click="ac.googleLogin()">
+            Sign in with Google
+          </button>
+          <br>
+          <a class="button button-block button-calm" href="#/tab/create">
+            Create an Account
+          </a>
+        </div>
       </ng-form>
     </div>
-    <div ng-if="ac.isLoggedIn">
-      <h1>
-        You succesfully logged in {{ac.validatedEmail}}
-      </h1>
+    <div ng-if="ac.isLoggedIn&&!ac.isCreatingAcc">
+      <h2>
+        Welcome {{ac.validatedEmail}}!
+      </h2>
+      <img ng-if="ac.usedGoogle" ng-src="{{ac.googleProfileImg}}" class="profileImg">
+      <br>
+      <div class="bord">
+        <div>Name: {{ac.validatedEmail}}</div>
+      </div>
     </div>
   </ion-content>
 </ion-view>
+
+<script src="js/formValidation/signIn.js"></script>
