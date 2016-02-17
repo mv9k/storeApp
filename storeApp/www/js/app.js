@@ -78,7 +78,6 @@ angular.module('storeApp', ['ionic', 'store.controllers', 'store.services', 'Acc
       }
     }
   })
-
     .state('tab.favs', {
       url: '/favs',
       views: {
@@ -86,8 +85,7 @@ angular.module('storeApp', ['ionic', 'store.controllers', 'store.services', 'Acc
           templateUrl: 'templates/tab-favs.html'
         }
       }
-    })
-  ;
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
