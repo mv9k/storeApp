@@ -19,4 +19,17 @@ angular.module('store.controllers', [])
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
-});
+})
+
+.controller('productController', function($scope, Entry) {
+  var entry = Entry.get({ id: $scope.id }, function() {
+    console.log(entry);
+  }); // get() returns a single entry
+
+  var entries = Entry.query(function() {
+    console.log(entries);
+  }); // query() returns all the entries
+
+})
+
+;
