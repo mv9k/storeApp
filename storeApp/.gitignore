@@ -4,3 +4,15 @@
 node_modules/
 platforms/
 plugins/
+
+.idea/.name
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/storeApp.iml
+
+.idea/vcs.xml
+
+.idea/workspace.xml
