@@ -1,6 +1,6 @@
 <ion-view view-title="Store App" style="text-align: center; background-color: lightgrey">
   <ion-content class="padding">
-    <div ng-if="!ac.isLoggedIn && !a.isCreatingAcc">
+    <div ng-if="!ac.isLoggedIn">
       <ng-form>
         <div class="bord">
           <h1>Log in</h1>
@@ -30,7 +30,7 @@
         </div>
       </ng-form>
     </div>
-    <div ng-if="ac.isLoggedIn&&!ac.isCreatingAcc">
+    <div ng-if="ac.isLoggedIn">
       <h3>
         Welcome {{ac.validatedEmail}}!
       </h3>
