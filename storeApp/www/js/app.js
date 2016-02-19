@@ -47,7 +47,7 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        controller: 'DashCtrl as dc'
       }
     }
   })

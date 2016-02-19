@@ -1,6 +1,20 @@
 angular.module('store.controllers', [])
 
-.controller('DashCtrl', DashCtrl)
+.controller('DashCtrl', function($scope, Products) {
+
+
+// TODO: ADD STUFF TO ME!!!!!
+
+
+  var dc = this;
+  $scope.Products = Products.all();
+
+  dc.getProducts = function() {
+    console.log(Products.all().items);
+  }
+
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -34,7 +48,3 @@ angular.module('store.controllers', [])
 
 ;
 
-DashCtrl.$inject = ['$scope', 'productServices'];
-function DashCtrl($scope, productServices) {
-  pc.start = productServices.ps.showData
-};
