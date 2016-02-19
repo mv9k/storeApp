@@ -87,8 +87,8 @@ angular.module('storeApp', ['ionic', 'store.controllers', 'store.services', 'Acc
             controller: 'theirItems as ti'
           }
         }
-      })
-=======
+      })=
+======
 
   .state('tab.account', {
     url: '/account',
