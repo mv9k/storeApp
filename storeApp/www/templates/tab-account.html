@@ -1,9 +1,61 @@
-<ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+<ion-view view-title="Store App" style="text-align: center; background-color: lightgrey">
+  <ion-content class="padding">
+    <div ng-if="!ac.isLoggedIn">
+      <ng-form>
+        <div class="bord">
+          <h1>Log in</h1>
+          <br>
+          <span style="color: red" id="err"></span>
+          <label class="item item-input txtBord" id="emailBox">
+            <input class="txtBord emailReq" type="email" placeholder="Username or Email" ng-model="ac.email"/>
+          </label>
+          <br>
+          <label class="item item-input txtBord" id="passBox">
+            <input class="txtBord passReq" type="text" placeholder="Password" ng-model="ac.password"/>
+          </label>
+          <br>
+          <button class="button button-block button-positive" ng-click="ac.logIn()">
+            Log in
+          </button>
+          <button class="button button-block button-assertive" ng-click="ac.googleLogin()">
+            Sign in with Google
+          </button>
+          <a class="button button-clear button-positive">
+            Forgot Password?
+          </a>
+
+          <button class="button button-block button-outline button-calm" ng-click="ac.createAcc()">
+            Create an Account
+          </button>
+        </div>
+      </ng-form>
+    </div>
+    <div ng-if="ac.isLoggedIn">
+      <h3>
+        Welcome {{ac.validatedEmail}}!
+      </h3>
+      <img ng-src="{{ac.profileImg}}" class="profileImg">
+      <br>
+      <br>
+      <div class="bord">
+        <div>Name: {{ac.validatedEmail}}</div>
+        <div>Looks like you havent set up your preferred categories! click the link below to get started!</div>
+        <br>
+        <br>
+        <div class="categoryItem" ng-repeat="cat in ac.categories">
+          <div>{{cat}}</div>
+        </div>
+        <form ng-submit="ac.addCategory()">
+          <label class="item item-input txtBord">
+            <input type="text" placeholder="New Category" class="txtBord" ng-model="ac.newCategory"/>
+          </label>
+        </form>
+      </div>
+      <div>
+        <button class="button button-block button-assertive" ng-click="ac.signOut()">Log Out</button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
+
+<script src="js/formValidation/signIn.js"></script>

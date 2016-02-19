@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('store.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
@@ -21,6 +21,7 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+<<<<<<< HEAD
     .controller('theirItems' ,function ($scope,$http) {
 var ti = this;
       ti.showData = function(){
@@ -41,3 +42,17 @@ var ti = this;
   };
 });
 
+=======
+.controller('productController', function($scope, Entry) {
+  var entry = Entry.get({ id: $scope.id }, function() {
+    console.log(entry);
+  }); // get() returns a single entry
+
+  var entries = Entry.query(function() {
+    console.log(entries);
+  }); // query() returns all the entries
+
+})
+
+;
+>>>>>>> master
