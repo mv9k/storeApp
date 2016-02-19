@@ -10,6 +10,8 @@
     acctCont.$inject = ["$scope"];
     function acctCont($scope){
       var ac = this;
+
+      //Firebase URL
       var ref = new Firebase("https://storeappformatc.firebaseio.com");
 
       //User State Vars
@@ -22,24 +24,19 @@
       ac.password = "";
       ac.name = "";
       ac.validatedEmail="";
-      ac.googleProfileImg="";
+      ac.profileImg="";
+      ac.thisUser = {};
+      ac.categories = [];
+      ac.newCategory = "";
 
       //Function variables
       ac.createAcc=createFireAccount;
       ac.logIn=logIntoFireAccount;
-      ac.createScreen=createNewAccount;
       ac.googleLogin=logInWithGoogle;
+      ac.signOut = logOut;
+      ac.addCategory = addCat;
 
-      function applyToScope(func){
-        $scope.$apply(function(){
-          func();
-        });
-      }
-      function createNewAccount(){
-        $scope.$apply(function(){
-          ac.isCreatingAcc=true;
-        });
-      }
+      //Create a new account with FireBase
       function createFireAccount(){
         console.log(ac.email);
         ref.createUser({
@@ -48,11 +45,18 @@
         }, function(error, userData) {
           if (error) {
             console.log("Error creating user:", error);
+            $("#err").html(error);
+            if(/email/.test(error)){$("#emailBox").css("border", "solid red 1px")}
+            else{$("#emailBox").css("border", "solid lightgrey 1px")}
+            if(/password/.test(error)){$("#passBox").css("border", "solid red 1px")}
+            else{$("#passBox").css("border", "solid lightgrey 1px")}
           } else {
             console.log("Successfully created user account with uid:", userData.uid);
+            logIntoFireAccount();
           }
         });
       }
+      //Log users into their FireBase account
       function logIntoFireAccount(){
         ref.authWithPassword({
           email    : ac.email,
@@ -69,6 +73,8 @@
             $scope.$apply(function(){
               ac.isLoggedIn=true;
               ac.validatedEmail = ac.email;
+              ac.thisUser = authData;
+              ac.profileImg=authData.password.profileImageURL;
             });
             $("#passBox").css("border", "solid lightgrey 1px");
             $("#emailBox").css("border", "solid lightgrey 1px");
@@ -76,6 +82,7 @@
           }
         });
       }
+      //Allow users to log in using Google
       function logInWithGoogle(){
         ref.authWithOAuthPopup("google", function(error, authData) {
           console.log(authData.google);
@@ -85,11 +92,29 @@
             $scope.$apply(function(){
               ac.isLoggedIn=true;
               ac.validatedEmail = authData.google.displayName;
-              ac.googleProfileImg=authData.google.profileImageURL;
+              ac.profileImg=authData.google.profileImageURL;
+              ac.thisUser=authData.google;
               ac.usedGoogle=true;
             });
           }
         });
+      }
+      //Log users out of their account
+      function logOut(){
+        ac.email = "";
+        ac.password = "";
+        ac.name = "";
+        ac.validatedEmail="";
+        ac.profileImg="";
+        ac.categories=[];
+        ac.isLoggedIn=false;
+        ac.isCreatingAcc=false;
+        ac.usedGoogle=false;
+      }
+      //Add Categories into the user categories array
+      function addCat(){
+        ac.categories.push(ac.newCategory);
+        ac.newCategory="";
       }
     }
 }());
