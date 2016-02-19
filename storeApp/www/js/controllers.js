@@ -21,8 +21,23 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+    .controller('theirItems' ,function ($scope,$http) {
+var ti = this;
+      ti.showData = function(){
+        console.log('yo');
+        ti.url = 'http://api.walmartlabs.com/v1/search?query='+ti.theItem+'&format=json&apiKey=pdschxhqsn9s2sut5q95mctz&callback=JSON_CALLBACK';
+
+        $http.jsonp(ti.url)
+            .success(function (data){
+              ti.walData = data;
+              console.log(ti.walData);
+            })
+      }
+    })
+
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
 });
+
