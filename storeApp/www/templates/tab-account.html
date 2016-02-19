@@ -40,16 +40,20 @@
       <div class="bord">
         <div>Name: {{ac.validatedEmail}}</div>
         <div>Looks like you havent set up your preferred categories! click the link below to get started!</div>
-        <br>
-        <br>
-        <div class="categoryItem" ng-repeat="cat in ac.categories">
-          <div>{{cat}}</div>
-        </div>
+        <button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Hide Categories</button>
         <form ng-submit="ac.addCategory()">
-          <label class="item item-input txtBord">
+          <label class="item item-input txtBord" id="newCategoryInput">
             <input type="text" placeholder="New Category" class="txtBord" ng-model="ac.newCategory"/>
           </label>
         </form>
+        <ion-list>
+          <ion-item class="item-remove-animate categoryItem" ng-repeat="cat in ac.categories.slice().reverse()" type="item-text-wrap">
+            <p>{{cat.key}}</p>
+            <ion-option-button class="button-assertive" ng-click="ac.removeCategory(cat.id)">
+              Delete
+            </ion-option-button>
+          </ion-item>
+        </ion-list>
       </div>
       <div>
         <button class="button button-block button-assertive" ng-click="ac.signOut()">Log Out</button>
