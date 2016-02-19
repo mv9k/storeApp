@@ -1,3 +1,16 @@
 <ion-view view-title="Store App" style="text-align: center;">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+        <img ng-src="{{chat.face}}">
+        <h2>{{chat.name}}</h2>
+        <p>{{chat.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
 
+        <button class="button button-block button-outline button-calm" ng-click="ps.showData()">
+          Do something!
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

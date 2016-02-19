@@ -5,12 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-<<<<<<< HEAD
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'product.services', 'AcctCtrl', 'newAccountCtrl'])
-=======
-angular.module('storeApp', ['ionic', 'store.controllers', 'store.services', 'AcctCtrl'])
->>>>>>> Wesley
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'productServices', 'AcctCtrl'])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -83,10 +80,7 @@ angular.module('storeApp', ['ionic', 'store.controllers', 'store.services', 'Acc
       }
     }
   })
-<<<<<<< HEAD
 
-=======
->>>>>>> Wesley
     .state('tab.favs', {
       url: '/favs',
       views: {
@@ -94,22 +88,10 @@ angular.module('storeApp', ['ionic', 'store.controllers', 'store.services', 'Acc
           templateUrl: 'templates/tab-favs.html'
         }
       }
-<<<<<<< HEAD
-    })
-
-  .state('tab.create', {
-    url: "/newaccount",
-    views: {
-      'tab-create': {
-        templateUrl: 'templates/account-create.html',
-        controller: 'newAccountCtrl as na'
-      }
-    }
-  });
-
-=======
     });
->>>>>>> Wesley
+
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');
 
