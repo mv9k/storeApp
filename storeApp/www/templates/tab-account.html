@@ -46,7 +46,7 @@
             <input type="text" placeholder="New Category" class="txtBord" ng-model="ac.newCategory"/>
           </label>
         </form>
-        <ion-list>
+        <ion-list ng-show="ac.showCat">
           <ion-item class="item-remove-animate categoryItem" ng-repeat="cat in ac.categories.slice().reverse()" type="item-text-wrap">
             <p>{{cat.key}}</p>
             <ion-option-button class="button-assertive" ng-click="ac.removeCategory(cat.id)">
