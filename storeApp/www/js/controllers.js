@@ -16,11 +16,7 @@ angular.module('store.controllers', [])
 
     $ionicLoading.show();
       Products.get(dc.searchText)
-        .then(getSuccess,
-        function(data) {
-          $ionicLoading.hide();
-          console.log('error');
-        });
+        .then(getSuccess, getFail);
   };
 
   function getSuccess(data) {
@@ -29,6 +25,10 @@ angular.module('store.controllers', [])
     dc.listProducts = data.data;
     dc.items = data.data.items;
     console.log(data.data.items);
+  }
+  function getFail(data) {
+    $ionicLoading.hide();
+    console.log('error');
   }
 
 
