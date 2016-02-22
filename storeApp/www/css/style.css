@@ -32,3 +32,8 @@
   border: none;
   background-color: #fff;
 }
+.button.button-balanced {
+  border-color: transparent;
+  background-color: #0c824c;
+  color: #fff;
+}
