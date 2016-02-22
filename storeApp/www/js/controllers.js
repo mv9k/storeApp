@@ -3,15 +3,18 @@ angular.module('store.controllers', [])
 .controller('DashCtrl', function($scope, Products) {
 
 
-// TODO: ADD STUFF TO ME!!!!!
-
-
   var dc = this;
-  $scope.Products = Products.all();
+
+  dc.listProducts = [];
+
 
   dc.getProducts = function() {
-    console.log(Products.all().items);
-  }
+    console.log('searched --> ' + dc.searchText);
+    console.log(Products.all(dc.searchText));
+    dc.listProducts = Products.all(dc.searchText);
+
+  };
+
 
 
 })

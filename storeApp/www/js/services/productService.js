@@ -3,23 +3,22 @@
  */
 angular.module('productServices', [])
 
-.service('Products', function ($http) {
+.factory('Products', function ($http) {
   var ps = this;
 
-  ps.showData = function() {
-    console.log('test 2');
-    ps.url = 'http://api.walmartlabs.com/v1/search?query='+'computer'+'&format=json&apiKey=pdschxhqsn9s2sut5q95mctz&callback=JSON_CALLBACK';
+  ps.showData = function(searchParam) {
+
+    ps.url = 'http://api.walmartlabs.com/v1/search?query='+searchParam+'&format=json&apiKey=pdschxhqsn9s2sut5q95mctz&callback=JSON_CALLBACK';
 
     $http.jsonp(ps.url)
       .success(function (data){
         ps.walData = data;
-        console.log(ps.walData);
       })
   };
 
   return {
-    all: function() {
-      ps.showData();
+    all: function(searchParam) {
+      ps.showData(searchParam);
       return ps.walData;
     }
   };
