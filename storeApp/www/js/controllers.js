@@ -1,19 +1,35 @@
 angular.module('store.controllers', [])
 
-.controller('DashCtrl', function($scope, Products) {
+.controller('DashCtrl', function($scope, Products, $ionicLoading) {
 
 
   var dc = this;
 
-  dc.listProducts = [];
+  dc.listProducts = {items:[]};
+  dc.items = [];
+  dc.searchText = 'phone';
 
 
   dc.getProducts = function() {
     console.log('searched --> ' + dc.searchText);
     console.log(Products.all(dc.searchText));
-    dc.listProducts = Products.all(dc.searchText);
 
+    $ionicLoading.show();
+      Products.get(dc.searchText)
+        .then(getSuccess,
+        function(data) {
+          $ionicLoading.hide();
+          console.log('error');
+        });
   };
+
+  function getSuccess(data) {
+    $ionicLoading.hide();
+    console.log('success');
+    dc.listProducts = data.data;
+    dc.items = data.data.items;
+    console.log(data.data.items);
+  }
 
 
 

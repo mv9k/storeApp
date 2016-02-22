@@ -3,17 +3,16 @@
     <ion-list>
       <ion-item>
         <label class="item item-input txtBord" id="productSearch">
-          <input class="txtBord" type="text" placeholder="Search" name="test" ng-value="test" ng-model="dc.searchText"/>
+          <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="dc.searchText"/>
         </label>
         <button class="button button-block button-outline button-calm" ng-click="dc.getProducts()">
           Search
         </button>
       </ion-item>
 
-      <ion-item ng-repeat="product in dc.listProducts.items track by $index">
-        <h1>TEST TEST TEST TEST</h1>
-        <img ng-src="{{product.mediumImage}}">
+      <ion-item ng-repeat="product in dc.items track by $index">
         <h2>{{product.name}}</h2>
+        <img ng-src="{{product.mediumImage}}">
         <p>{{product.shortDescription}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
