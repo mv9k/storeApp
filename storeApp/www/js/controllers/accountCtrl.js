@@ -7,13 +7,20 @@
   angular.module('AcctCtrl', [])
     .controller('AccountCtrl', acctCont);
 
+<<<<<<< HEAD
   acctCont.$inject = ["$scope", "$ionicPopup"];
   function acctCont($scope){
     var ac = this;
+=======
+    acctCont.$inject = ["$scope", "$ionicPopup"];
+    function acctCont($scope){
+      var ac = this;
+>>>>>>> master
 
     //Firebase URL
     var ref = new Firebase("https://storeappformatc.firebaseio.com");
 
+<<<<<<< HEAD
     //User State Vars
     ac.isLoggedIn=false;
     ac.isCreatingAcc=false;
@@ -33,6 +40,14 @@
     ac.categories = [];
     ac.favorites = [];
     ac.cart = [];
+=======
+      //User State Vars
+      ac.isLoggedIn=false;
+      ac.isCreatingAcc=false;
+      ac.usedGoogle=false;
+      ac.showCat = true;
+      ac.emptyCat = true;
+>>>>>>> master
 
     //Function variables
     ac.createAcc=createFireAccount;
@@ -113,6 +128,7 @@
       ac.name = "";
       ac.validatedEmail="";
       ac.profileImg="";
+<<<<<<< HEAD
       ac.categories=[];
       ac.isLoggedIn=false;
       ac.isCreatingAcc=false;
@@ -127,6 +143,43 @@
         if(ac.newCategory.toUpperCase()==ac.categories[i].key.toUpperCase()){
           invalid=true;
         }
+=======
+      ac.thisUser = {};
+      ac.newCategory = "";
+      //User lists
+      ac.categories = [];
+      ac.favorites = [];
+      ac.cart = [];
+
+      //Function variables
+      ac.createAcc=createFireAccount;
+      ac.logIn=logIntoFireAccount;
+      ac.googleLogin=logInWithGoogle;
+      ac.signOut = logOut;
+      ac.addCategory = addCat;
+      ac.removeCategory= removeCat;
+      ac.toggleCat=showCategories;
+
+      //Create a new account with FireBase
+      function createFireAccount(){
+        console.log(ac.email);
+        ref.createUser({
+          email    : ac.email,
+          password : ac.password
+        }, function(error, userData) {
+          if (error) {
+            console.log("Error creating user:", error);
+            $("#err").html(error);
+            if(/email/.test(error)){$("#emailBox").css("border", "solid red 1px")}
+            else{$("#emailBox").css("border", "solid lightgrey 1px")}
+            if(/password/.test(error)){$("#passBox").css("border", "solid red 1px")}
+            else{$("#passBox").css("border", "solid lightgrey 1px")}
+          } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+            logIntoFireAccount();
+          }
+        });
+>>>>>>> master
       }
       if(ac.newCategory==""||ac.newCategory.length>15){
         invalid=true;
@@ -136,11 +189,69 @@
         ac.newCategory="";
         $("#newCategoryInput").css("border", "solid lightgrey 1px")
       }
+<<<<<<< HEAD
       else{
         $("#newCategoryInput").css("border", "solid red 1px")
       }
       if(ac.categories.length>0){
         ac.emptyCat=false;
+=======
+      //Log users out of their account
+      function logOut(){
+        ac.email = "";
+        ac.password = "";
+        ac.name = "";
+        ac.validatedEmail="";
+        ac.profileImg="";
+        ac.categories=[];
+        ac.isLoggedIn=false;
+        ac.isCreatingAcc=false;
+        ac.usedGoogle=false;
+        ac.showCat = true;
+        ac.emptyCat = true;
+      }
+      //Add Categories into the user categories array
+      function addCat(){
+        var invalid = false;
+        for(var i=0;i<ac.categories.length;i++){
+          if(ac.newCategory.toUpperCase()==ac.categories[i].key.toUpperCase()){
+            invalid=true;
+          }
+        }
+        if(ac.newCategory==""||ac.newCategory.length>15){
+          invalid=true;
+        }
+        if(!invalid){
+          ac.categories.push({key: ac.newCategory, id: ac.categories.length});
+          ac.newCategory="";
+          $("#newCategoryInput").css("border", "solid lightgrey 1px")
+        }
+        else{
+          $("#newCategoryInput").css("border", "solid red 1px")
+        }
+        if(ac.categories.length>0){
+          ac.emptyCat=false;
+        }
+      }
+      function removeCat(id){
+        for(var i=0;i<ac.categories.length;i++){if(id==ac.categories[i].id){ac.categories.splice(i, 1)}}
+      }
+      function addCart(){
+
+      }
+      function removeCart(){
+
+      }
+      function addFav(){
+
+      }
+      function removeFav(){
+
+      }
+      function showCategories(){
+        ac.showCat?ac.showCat=false:ac.showCat=true;
+        ac.showCat?$("#toggleCat").html("Hide Categories"):$("#toggleCat").html("Show Categories");
+>>>>>>> master
       }
       console.log(ac.categories)
     }
