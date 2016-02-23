@@ -177,18 +177,6 @@
         ac.emptyCat=false;
       }
     }
-    function addCart(){
-
-    }
-    function removeCart(){
-
-    }
-    function addFav(){
-
-    }
-    function removeFav(){
-
-    }
     function showCategories(){
       ac.showCat?ac.showCat=false:ac.showCat=true;
       ac.showCat?$("#toggleCat").html("Hide Categories"):$("#toggleCat").html("Show Categories");
