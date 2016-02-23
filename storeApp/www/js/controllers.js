@@ -26,13 +26,11 @@ angular.module('store.controllers', [])
     dc.items = data.data.items;
     console.log(data.data.items);
   }
+
   function getFail(data) {
     $ionicLoading.hide();
     console.log('error');
   }
-
-
-
 })
 
 //.controller('ChatsCtrl', function($scope, Chats) {
