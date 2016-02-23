@@ -39,7 +39,7 @@
       <div class="bord">
         <div>Name: {{ac.validatedEmail}}</div>
         <div ng-if="ac.emptyCat">Looks like you havent set up your preferred categories! click the button below to get started!</div>
-        <button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Hide Categories</button>
+        <button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Show Categories</button>
         <div ng-show="ac.showCat">
           <form ng-submit="ac.addCategory()">
             <label class="item item-input txtBord" id="newCategoryInput">
