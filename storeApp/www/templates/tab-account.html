@@ -28,7 +28,6 @@
           <a class="button button-clear button-positive">
             Forgot Password?
           </a>
-
           <button class="button button-block button-outline button-calm" ng-click="ac.createAcc()">
             Create an Account
           </button>
@@ -44,17 +43,41 @@
       <br>
       <div class="bord">
         <div>Name: {{ac.validatedEmail}}</div>
-        <div>Looks like you havent set up your preferred categories! click the link below to get started!</div>
-        <br>
-        <br>
-        <div class="categoryItem" ng-repeat="cat in ac.categories">
-          <div>{{cat}}</div>
+        <div ng-if="ac.emptyCat">Looks like you havent set up your preferred categories! click the button below to get started!</div>
+        <button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Hide Categories</button>
+        <div ng-show="ac.showCat">
+          <form ng-submit="ac.addCategory()">
+            <label class="item item-input txtBord" id="newCategoryInput">
+              <input type="text" placeholder="New Category" class="txtBord" ng-model="ac.newCategory"/>
+            </label>
+          </form>
+          <ion-list>
+            <ion-item class="item-remove-animate categoryItem" ng-repeat="cat in ac.categories.slice().reverse()" type="item-text-wrap">
+              <p>{{cat.key}}</p>
+              <ion-option-button class="button-assertive" ng-click="ac.removeCategory(cat.id)">
+                Delete
+              </ion-option-button>
+              <ion-option-button class="button-calm" ng-click="ac.blockCategory(cat.id)">
+                Block
+              </ion-option-button>
+            </ion-item>
+          </ion-list>
         </div>
-        <form ng-submit="ac.addCategory()">
-          <label class="item item-input txtBord">
-            <input type="text" placeholder="New Category" class="txtBord" ng-model="ac.newCategory"/>
-          </label>
-        </form>
+        <button id="toggleBlockCat" class="button button-block button-balanced" ng-click="ac.toggleBlockedCat()">Blocked Categories</button>
+        <div ng-show="ac.showBlockedCat">
+          <form ng-submit="ac.addBlockedCategory()">
+            <label class="item item-input txtBord" id="newBlockedCategoryInput">
+              <input type="text" placeholder="New Category" class="txtBord" ng-model="ac.newBlockedCategory"/>
+            </label>
+          </form>
+          <ion-list>
+            <ion-item class="item-remove-animate categoryItem" ng-repeat="cat in ac.blockedCategories.slice().reverse()" type="item-text-wrap">
+              <p>{{cat.key}}</p>
+              <ion-option-button class="button-assertive" ng-click="ac.removeCategory(cat.id)">
+                Delete
+              </ion-option-button>
+            </ion-item>
+          </ion-list>
       </div>
       <div>
         <button class="button button-block button-assertive" ng-click="ac.signOut()">Log Out</button>
