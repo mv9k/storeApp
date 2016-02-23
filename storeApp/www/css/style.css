@@ -53,5 +53,8 @@
 }
 .productRating {
   padding: 15px;
-  display: inline-block !important;
+  /*display: inline-block !important;*/
+}
+.largerImg {
+  width: 29%;
 }
