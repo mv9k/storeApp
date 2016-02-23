@@ -8,7 +8,7 @@
 
 <<<<<<< HEAD
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'productServices', 'AcctCtrl'])
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl','cartModule'])
 
 =======
 >>>>>>> Wesley
@@ -58,12 +58,17 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
       }
     })
 
+<<<<<<< HEAD
     .state('tab.chats', {
       url: '/chats',
+=======
+  .state('tab.cart', {
+      url: '/cart',
+>>>>>>> gmoney
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-cart': {
+          templateUrl: 'templates/tab-cart.html',
+          controller: 'cartCtrl as cc'
         }
       }
     })
