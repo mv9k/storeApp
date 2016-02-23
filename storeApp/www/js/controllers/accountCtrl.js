@@ -7,18 +7,21 @@
   angular.module('AcctCtrl', [])
     .controller('AccountCtrl', acctCont);
 
-  acctCont.$inject = ["$scope", "$ionicPopup"];
+  acctCont.$inject = ["$scope" , "$ionicPopup"];
   function acctCont($scope){
     var ac = this;
+    //Commit worked #1
 
     //Firebase URL
     var ref = new Firebase("https://storeappformatc.firebaseio.com");
+    var usersRef = ref.child("users");
+    console.log(usersRef);
 
     //User State Vars
     ac.isLoggedIn=false;
     ac.isCreatingAcc=false;
     ac.usedGoogle=false;
-    ac.showCat=true;
+    ac.showCat=false;
     ac.showBlockedCat=false;
     ac.emptyCat=true;
 
@@ -51,6 +54,7 @@
 
     //Create a new account with FireBase
     function createFireAccount(){
+      var fireBaseObj = {};
       console.log(ac.email);
       ref.createUser({
         email    : ac.email,
@@ -66,6 +70,8 @@
         } else {
           console.log("Successfully created user account with uid:", userData.uid);
           logIntoFireAccount();
+          fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
+          usersRef.set(fireBaseObj);
         }
       });
     }
@@ -88,6 +94,12 @@
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
+          });
+          ref.on("value", function(keys){
+            console.log(keys.val());
+            ac.categories=keys.val().users[ac.thisUser.uid].keywords;
+          }, function(errorObject){
+            console.log("The read failed: " + errorObject.code);
           });
           $("#passBox").css("border", "solid lightgrey 1px");
           $("#emailBox").css("border", "solid lightgrey 1px");
@@ -123,12 +135,13 @@
       ac.isLoggedIn=false;
       ac.isCreatingAcc=false;
       ac.usedGoogle=false;
-      ac.showCat = true;
+      ac.showCat = false;;
       ac.emptyCat = true;
     }
     //Add Categories into the user categories array
     function addCat(){
       var invalid = false;
+      var fireBaseObj={};
       for(var i=0;i<ac.categories.length;i++){
         if(ac.newCategory.toUpperCase()==ac.categories[i].key.toUpperCase()){
           invalid=true;
@@ -140,7 +153,10 @@
       if(!invalid){
         ac.categories.push({key: ac.newCategory, id: ac.categories.length});
         ac.newCategory="";
-        $("#newCategoryInput").css("border", "solid lightgrey 1px")
+        $("#newCategoryInput").css("border", "solid lightgrey 1px");
+        for(var i=0;i<ac.categories.length;i++){delete ac.categories[i].$$hashKey}
+        ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
+        usersRef.update(fireBaseObj);
       }
       else{
         $("#newCategoryInput").css("border", "solid red 1px")
@@ -150,7 +166,11 @@
       }
     }
     function removeCat(id){
+      var fireBaseObj={};
       for(var i=0;i<ac.categories.length;i++){if(id==ac.categories[i].id){ac.categories.splice(i, 1)}}
+      for(var i=0;i<ac.categories.length;i++){delete ac.categories[i].$$hashKey}
+      ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
+      usersRef.update(fireBaseObj);
     }
     function blockCat(id){
       for(var i=0;i<ac.categories.length;i++){if(id==ac.categories[i].id){ac.blockedCategories.push(ac.categories[i]); ac.categories.splice(i, 1)}}
