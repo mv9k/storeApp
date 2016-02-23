@@ -7,7 +7,7 @@ angular.module('store.controllers', [])
 
   dc.listProducts = {items:[]};
   dc.items = [];
-  dc.searchText = 'phone';
+  dc.searchText = 'bike';
 
 
   dc.getProducts = function() {
