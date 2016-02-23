@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'productServices', 'AcctCtrl'])
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl','cartModule'])
 
 
 
@@ -54,12 +54,12 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.cart', {
+      url: '/cart',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-cart': {
+          templateUrl: 'templates/tab-cart.html',
+          controller: 'cartCtrl as cc'
         }
       }
     })
