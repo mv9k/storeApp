@@ -6,7 +6,11 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
+<<<<<<< HEAD
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'productServices', 'AcctCtrl'])
+=======
 angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'product.services', 'AcctCtrl'])
+>>>>>>> Wesley
 
 
 .run(function($ionicPlatform) {
@@ -47,7 +51,7 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        controller: 'DashCtrl as dc'
       }
     }
   })
@@ -80,6 +84,10 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
       }
     }
   })
+<<<<<<< HEAD
+
+=======
+>>>>>>> Wesley
     .state('tab.favs', {
       url: '/favs',
       views: {
@@ -87,6 +95,12 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
           templateUrl: 'templates/tab-favs.html'
         }
       }
+<<<<<<< HEAD
+    });
+
+
+
+=======
     })
   .state('tab.create', {
     url: "/newaccount",
@@ -97,6 +111,7 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
       }
     }
   });
+>>>>>>> Wesley
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');
 
