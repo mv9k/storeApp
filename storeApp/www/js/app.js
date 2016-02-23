@@ -6,7 +6,10 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
+
 angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'productServices', 'AcctCtrl'])
+
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -78,6 +81,7 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
           controller: 'AccountCtrl as ac'
         }
       }
+
     })
 
     .state('tab.favs', {
@@ -87,9 +91,7 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
           templateUrl: 'templates/tab-favs.html'
         }
       }
-
     })
-
 
     .state('tab.create', {
       url: "/newaccount",
@@ -100,6 +102,7 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
         }
       }
     });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');
