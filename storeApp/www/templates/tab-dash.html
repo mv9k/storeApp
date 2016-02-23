@@ -14,12 +14,15 @@
         <div class="productTitle"><h3>{{product.name}}</h3></div>
         <br>
         <img ng-src="{{product.mediumImage}}"><br>
-        <button class="button button-balanced buyButton" ng-click="#">
+        <button class="button button-balanced buyButton">
           <div class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></div>
         </button>
-        <div class="productRating"><img ng-src="{{product.customerRatingImage}}"></div>
+        <button class="button button-calm">
+          <div class="productDetails"> Details </div>
+        </button>
         <br>
-        <p>{{product.shortDescription}}</p>
+        <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
+        <!--<p>{{product.shortDescription}}</p>-->
         <ion-option-button class="button-calm sizeUp">FAV &nbsp;<i class="ion-ios-heart" ng-click="addFav(product)"></i></ion-option-button>
       </ion-item>
     </ion-list>
