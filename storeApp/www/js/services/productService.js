@@ -5,8 +5,8 @@ angular.module('productServices', [])
 
 .factory('Products', function ($http) {
   var ps = this;
-  ps.url = 'http://api.walmartlabs.com/v1/search?format=json&apiKey=pdschxhqsn9s2sut5q95mctz&callback=JSON_CALLBACK&query=';
-  //ps.url = 'http://api.walmartlabs.com/v1/search?query='+searchParam+'&format=json&apiKey=pdschxhqsn9s2sut5q95mctz&callback=JSON_CALLBACK';
+  ps.url = 'http://api.walmartlabs.com/v1/search?format=json&apiKey=tdedasam6zmm7w782yhhw4gn&callback=JSON_CALLBACK&query=';
+
 
   ps.showData = function(searchParam) {
 

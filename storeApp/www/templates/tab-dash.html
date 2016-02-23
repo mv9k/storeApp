@@ -1,7 +1,7 @@
 <ion-view view-title="Shop" style="text-align: center;">
   <ion-content>
     <ion-list>
-      <ion-item>
+      <ion-item type="item-text-wrap">
         <label class="item item-input txtBord" id="productSearch">
           <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="dc.searchText"/>
         </label>
@@ -11,10 +11,16 @@
       </ion-item>
 
       <ion-item ng-repeat="product in dc.items track by $index">
-        <h2>{{product.name}}</h2>
-        <img ng-src="{{product.mediumImage}}">
+        <div class="productTitle"><h3>{{product.name}}</h3></div>
+        <br>
+        <img ng-src="{{product.mediumImage}}"><br>
+        <button class="button button-balanced buyButton" ng-click="#">
+          <div class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></div>
+        </button>
+        <div class="productRating"><img ng-src="{{product.customerRatingImage}}"></div>
+        <br>
         <p>{{product.shortDescription}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-calm sizeUp">FAV &nbsp;<i class="ion-ios-heart" ng-click="addFav(product)"></i></ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
