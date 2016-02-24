@@ -1,12 +1,15 @@
 <ion-view view-title="Chats">
   <ion-content>
     <ion-list>
-    <ion-item type="item-text-wrap"><h1>Hello from the other side!!!!!!!!!!!!!!</h1></ion-item>
-      <ion-item><button ng-click="cc.clicked()">Clicked</button></ion-item>
-      <ion-item><button ng-click="cc.plzClick()">Plz Click</button></ion-item>
-      <ion-item><h3>Wesley look it worked!</h3></ion-item>
       <ion-item ng-repeat="product in cc.cartProducts track by $index">
-        <div class="productTitle"><h3>{{product.name}}</h3></div>
+        <div class="card">
+          <div class="productTitle"><h3>{{product.name}}</h3></div>
+          <h4 style="background-color:limegreen; ">$ &nbsp;{{product.salePrice}}</h4>
+          <img ng-src="{{product.mediumImage}}">
+
+          <div class="item item-text-wrap">{{product.shortDescription}}</div>
+        </div>
+
       </ion-item>
     </ion-list>
   </ion-content>

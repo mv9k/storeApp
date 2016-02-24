@@ -8,18 +8,19 @@ angular.module('cartService', [])
   .service('cartService',cartService);
 function cartService(){
   var cs = this;
-  var cartProducts = [];
+  cs.cartProducts = [];
   cs.addToCart = addToCart;
-  cs.plzClick = function(){
+  cs.plzClick = plzClick;
+  function plzClick(){
     alert("you've reached the service")
-  };
+  }
   //function addToCart(product){
   //  alert('did it work')
   //}
   function addToCart(product){
-    cartProducts.push(product);
+    cs.cartProducts.push(product);
     console.log(product);
-    alert(cartProducts);
+    console.log(cs.cartProducts);
   }
 }
 

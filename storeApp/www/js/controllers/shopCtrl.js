@@ -18,7 +18,7 @@
     sc.listProducts = {items:[]};
     sc.items = [];
     sc.searchText = 'bike';
-    
+
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     sc.addToCart = addToCart;

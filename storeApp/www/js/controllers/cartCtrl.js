@@ -9,7 +9,7 @@
 cartCtrl.$inject = ['cartService'];
   function cartCtrl(cartService){
     var cc = this;
-    var cartProducts = cartService.cartProducts;
+    cc.cartProducts = cartService.cartProducts;
     cc.clicked = function() {
       console.log('yo');
       alert("you've reached the controller");
