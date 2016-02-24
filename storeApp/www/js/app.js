@@ -8,7 +8,7 @@
 
 
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule'])
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl'])
 
 
 
@@ -49,8 +49,8 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
       url: '/dash',
       views: {
         'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl as dc'
+          templateUrl: 'templates/tab-shop.html',
+          controller: 'shopCtrl as sc'
         }
       }
     })

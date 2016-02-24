@@ -5,12 +5,12 @@
         <label class="item item-input txtBord" id="productSearch">
           <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="dc.searchText"/>
         </label>
-        <button class="button button-block button-outline button-calm" ng-click="dc.getProducts()">
+        <button class="button button-block button-outline button-calm" ng-click="sc.getProducts()">
           Search
         </button>
       </ion-item>
 
-      <ion-item ng-repeat="product in dc.items track by $index">
+      <ion-item ng-repeat="product in sc.items track by $index">
         <div class="productTitle"><h3>{{product.name}}</h3></div>
         <br>
         <img ng-src="{{product.mediumImage}}"><br>

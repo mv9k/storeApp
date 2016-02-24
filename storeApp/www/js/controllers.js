@@ -1,37 +1,37 @@
 angular.module('store.controllers', [])
-
-.controller('DashCtrl', function($scope, Products, $ionicLoading) {
-
-
-  var dc = this;
-
-  dc.listProducts = {items:[]};
-  dc.items = [];
-  dc.searchText = 'bike';
-
-
-  dc.getProducts = function() {
-    console.log('searched --> ' + dc.searchText);
-    console.log(Products.all(dc.searchText));
-
-    $ionicLoading.show();
-      Products.get(dc.searchText)
-        .then(getSuccess, getFail);
-  };
-
-  function getSuccess(data) {
-    $ionicLoading.hide();
-    console.log('success');
-    dc.listProducts = data.data;
-    dc.items = data.data.items;
-    console.log(data.data.items);
-  }
-
-  function getFail(data) {
-    $ionicLoading.hide();
-    console.log('error');
-  }
-})
+//
+//.controller('ShopCtrl', function($scope, Products, $ionicLoading) {
+//
+//
+//  var dc = this;
+//
+//  dc.listProducts = {items:[]};
+//  dc.items = [];
+//  dc.searchText = 'bike';
+//
+//
+//  dc.getProducts = function() {
+//    console.log('searched --> ' + dc.searchText);
+//    console.log(Products.all(dc.searchText));
+//
+//    $ionicLoading.show();
+//      Products.get(dc.searchText)
+//        .then(getSuccess, getFail);
+//  };
+//
+//  function getSuccess(data) {
+//    $ionicLoading.hide();
+//    console.log('success');
+//    dc.listProducts = data.data;
+//    dc.items = data.data.items;
+//    console.log(data.data.items);
+//  }
+//
+//  function getFail(data) {
+//    $ionicLoading.hide();
+//    console.log('error');
+//  }
+//})
 
 //.controller('ChatsCtrl', function($scope, Chats) {
 //  // With the new view caching in Ionic, Controllers are only called
