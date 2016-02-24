@@ -8,7 +8,7 @@
 
 
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl'])
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl', 'favCtrl', 'favServices'])
 
 
 
@@ -88,7 +88,8 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
       url: '/favs',
       views: {
         'tab-favs': {
-          templateUrl: 'templates/tab-favs.html'
+          templateUrl: 'templates/tab-favs.html',
+          controller: 'favCtrl as fc'
         }
       }
     });
