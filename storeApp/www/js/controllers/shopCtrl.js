@@ -18,10 +18,11 @@
     sc.listProducts = {items:[]};
     sc.items = [];
     sc.searchText = 'bike';
-    
+
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     sc.addToCart = addToCart;
+    sc.remFav = removeFavourite;
 
     function getProducts() {
       console.log('searched --> ' + sc.searchText);
@@ -46,12 +47,14 @@
     }
 
     function addFavourite(product) {
-      console.log(product + ' transferring to fav service!');
       fs.addFav(product);
     }
 
+    function removeFavourite(product) {
+      fs.remFav(product);
+    }
+
     function addToCart(product) {
-      console.log('clicked buy button');
       cs.addToCart(product);
       console.log('added '+ product + ' to cart!');
     }

@@ -5,13 +5,21 @@ angular.module('favServices', [])
 
   .service('Favs', function () {
     var fs = this;
-    var favsArray = [];
+
+    fs.favsArray = [];
 
     fs.addFav = addFav;
+    fs.remFav = remFav;
 
     function addFav(product) {
-      favsArray.push(product);
-      console.log(favsArray);
+      fs.favsArray.push(product);
+      console.log(fs.favsArray);
+    }
+
+    function remFav(product) {
+      //fs.favsArray.splice(product);
+      //TODO: Backwards for loop for removing product
+      console.log(fs.favsArray)
     }
 
   });

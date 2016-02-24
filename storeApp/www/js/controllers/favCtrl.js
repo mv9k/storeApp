@@ -7,13 +7,14 @@
   angular.module('favCtrl', [])
     .controller('favCtrl', favCont);
 
-  favCont.$inject = ["favService"];
+  favCont.$inject = ["Favs"];
 
-  function favCont(favService){
+  function favCont(Favs){
     var fc = this;
+    var fs = Favs;
 
     fc.addFav = addFav;
-
+    fc.favsArray = fs.favsArray;
 
     function addFav(product) {
       fs.addFav(product);
