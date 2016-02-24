@@ -7,17 +7,22 @@
   angular.module('ShopCtrl', [])
     .controller('shopCtrl', shopCont);
 
-  shopCont.$inject = ["$scope", "Products", "$ionicLoading"];
+  shopCont.$inject = ["$scope", "Products", "$ionicLoading", "Favs", "cartService"];
 
-  function shopCont($scope, Products, $ionicLoading){
+  function shopCont($scope, Products, $ionicLoading, Favs, cartService){
     var sc = this;
+    var fs = Favs;
+    var cs = cartService;
+
 
     sc.listProducts = {items:[]};
     sc.items = [];
+    sc.addFav = addFav;
     sc.searchText = 'bike';
 
 
     sc.getProducts = getProducts;
+    cs.addToCart = addToCart;
 
     function getProducts() {
       console.log('searched --> ' + sc.searchText);
@@ -40,6 +45,16 @@
       $ionicLoading.hide();
       console.log('error');
     }
+
+    function addFav(product) {
+      console.log(product + ' transferring to fav service!');
+      fs.addFav(product);
+    }
+
+    function addToCart(product) {
+      cs.addToCart(product);
+    }
+
   }
 
 }());
