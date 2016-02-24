@@ -15,7 +15,14 @@
     //Firebase URL
     var ref = new Firebase("https://storeappformatc.firebaseio.com");
     var usersRef = ref.child("users");
-    console.log(usersRef);
+
+    //Temporary Get values
+    var storage=[];
+    ref.on("value", function(keys){
+      storage=keys.val().users;
+    }, function(errorObject){
+      console.log("The read failed: " + errorObject.code);
+    });
 
     //User State Vars
     ac.isLoggedIn=false;
@@ -89,17 +96,13 @@
           if(/password/.test(error)){$("#passBox").css("border", "solid red 1px")}
           else{$("#passBox").css("border", "solid lightgrey 1px")}
         } else {
+          var tempArr=[];
           $scope.$apply(function(){
             ac.isLoggedIn=true;
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
-          });
-          ref.on("value", function(keys){
-            console.log(keys.val());
-            ac.categories=keys.val().users[ac.thisUser.uid].keywords;
-          }, function(errorObject){
-            console.log("The read failed: " + errorObject.code);
+            ac.categories=storage[ac.thisUser.uid].keywords;
           });
           $("#passBox").css("border", "solid lightgrey 1px");
           $("#emailBox").css("border", "solid lightgrey 1px");
@@ -120,9 +123,10 @@
             ac.profileImg=authData.google.profileImageURL;
             ac.thisUser=authData.google;
             ac.usedGoogle=true;
+            ac.categories=storage[ac.thisUser.id].keywords;
           });
         }
-      });
+      })
     }
     //Log users out of their account
     function logOut(){
@@ -154,7 +158,9 @@
         ac.categories.push({key: ac.newCategory, id: ac.categories.length});
         ac.newCategory="";
         $("#newCategoryInput").css("border", "solid lightgrey 1px");
-        for(var i=0;i<ac.categories.length;i++){delete ac.categories[i].$$hashKey}
+        for(var i=0;i<ac.categories.length;i++){
+          delete ac.categories[i].$$hashKey
+        }
         ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
         usersRef.update(fireBaseObj);
       }
