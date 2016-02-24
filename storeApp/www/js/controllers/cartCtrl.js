@@ -7,11 +7,15 @@
   angular.module('cartModule', [])
     .controller('cartCtrl', cartCtrl);
 cartCtrl.$inject = ['cartService'];
-  function cartCtrl(){
+  function cartCtrl(cartService){
     var cc = this;
+    var cartProducts = cartService.cartProducts;
     cc.clicked = function() {
       console.log('yo');
-      alert('yo');
+      alert("you've reached the controller");
+    };
+    cc.plzClick = function(){
+      cc.plzClick = cartService.addToCart();
     }
     }
 
