@@ -17,7 +17,8 @@ angular.module('favServices', [])
     }
 
     function remFav(product) {
-      fs.favsArray.splice(product);
+      //fs.favsArray.splice(product);
+      //TODO: Backwards for loop for removing product
       console.log(fs.favsArray)
     }
 
