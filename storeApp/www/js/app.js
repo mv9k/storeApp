@@ -7,7 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'productServices', 'AcctCtrl'])
+
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl'])
 
 
 
@@ -48,18 +49,18 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
       url: '/dash',
       views: {
         'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl as dc'
+          templateUrl: 'templates/tab-shop.html',
+          controller: 'shopCtrl as sc'
         }
       }
     })
 
-    .state('tab.chats', {
-      url: '/chats',
+  .state('tab.cart', {
+      url: '/cart',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-cart': {
+          templateUrl: 'templates/tab-cart.html',
+          controller: 'cartCtrl as cc'
         }
       }
     })
@@ -81,24 +82,13 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
           controller: 'AccountCtrl as ac'
         }
       }
-
-    })
+  })
 
     .state('tab.favs', {
       url: '/favs',
       views: {
         'tab-favs': {
           templateUrl: 'templates/tab-favs.html'
-        }
-      }
-    })
-
-    .state('tab.create', {
-      url: "/newaccount",
-      views: {
-        'tab-create': {
-          templateUrl: 'templates/account-create.html',
-          controller: 'newAccountCtrl as na'
         }
       }
     });

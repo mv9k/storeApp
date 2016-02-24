@@ -6,13 +6,18 @@
           <h1>Log in</h1>
           <br>
           <span style="color: red" id="err"></span>
-          <label class="item item-input txtBord" id="emailBox">
+          <div class="list">
+          <label class="item item-input txtBord item-floating-label" id="emailBox">
+            <span class="input-label">Username or Email</span>
             <input class="txtBord emailReq" type="email" placeholder="Username or Email" ng-model="ac.email"/>
           </label>
           <br>
-          <label class="item item-input txtBord" id="passBox">
-            <input class="txtBord passReq" type="text" placeholder="Password" ng-model="ac.password"/>
-          </label>
+
+            <label class="item item-input txtBord item-floating-label" id="passBox">
+              <span class="input-label">Enter your Password</span>
+              <input class="txtBord passReq" type="text" placeholder="Password" ng-model="ac.password"/>
+            </label>
+          </div>
           <br>
           <button class="button button-block button-positive" ng-click="ac.logIn()">
             Log in
@@ -39,7 +44,7 @@
       <div class="bord">
         <div>Name: {{ac.validatedEmail}}</div>
         <div ng-if="ac.emptyCat">Looks like you havent set up your preferred categories! click the button below to get started!</div>
-        <button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Hide Categories</button>
+        <button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Show Categories</button>
         <div ng-show="ac.showCat">
           <form ng-submit="ac.addCategory()">
             <label class="item item-input txtBord" id="newCategoryInput">
