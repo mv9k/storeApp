@@ -14,16 +14,16 @@
         <div class="productTitle"><h3>{{product.name}}</h3></div>
         <br>
         <img ng-src="{{product.mediumImage}}"><br>
-        <button class="button button-balanced buyButton">
-          <div class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></div>
+        <button class="button button-balanced buyButton" ng-click="sc.addToCart(product)">
+          <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
         </button>
         <button class="button button-calm">
-          <div class="productDetails"> Details </div>
+          <span class="productDetails"> Details </span>
         </button>
         <br>
         <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
         <!--<p>{{product.shortDescription}}</p>-->
-        <ion-option-button class="button-calm sizeUp">FAV &nbsp;<i class="ion-ios-heart" ng-click="addFav(product.name)"></i></ion-option-button>
+        <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product.name)"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
