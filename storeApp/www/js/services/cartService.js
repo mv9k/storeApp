@@ -20,11 +20,7 @@ function cartService(){
   function addToCart(product){
     cs.cartProducts.push(product);
     console.log(product);
-<<<<<<< HEAD
-    alert(cs.cartProducts);
-=======
-    console.log(cs.cartProducts);
->>>>>>> gmoney
+
   }
 }
 
