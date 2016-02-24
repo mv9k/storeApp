@@ -1,8 +1,21 @@
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
     "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-splashscreen"
+=======
+=======
+>>>>>>> origin/Wesley
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@~1.2.0"
+<<<<<<< HEAD
+>>>>>>> origin/Wesley
+=======
+>>>>>>> origin/Wesley
         },
         "is_top_level": true,
         "variables": {}
