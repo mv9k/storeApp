@@ -10,16 +10,21 @@ function cartService(){
   var cs = this;
   cs.cartProducts = [];
   cs.addToCart = addToCart;
-  cs.plzClick = function(){
+  cs.plzClick = plzClick;
+  function plzClick(){
     alert("you've reached the service")
-  };
+  }
   //function addToCart(product){
   //  alert('did it work')
   //}
   function addToCart(product){
     cs.cartProducts.push(product);
     console.log(product);
+<<<<<<< HEAD
     alert(cs.cartProducts);
+=======
+    console.log(cs.cartProducts);
+>>>>>>> gmoney
   }
 }
 

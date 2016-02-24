@@ -2,7 +2,14 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="product in cc.cartProducts track by $index">
-        <div class="productTitle"><h3>{{product.name}}</h3></div>
+        <div class="card">
+          <div class="productTitle"><h3>{{product.name}}</h3></div>
+          <h4 style="background-color:limegreen; ">$ &nbsp;{{product.salePrice}}</h4>
+          <img ng-src="{{product.mediumImage}}">
+
+          <div class="item item-text-wrap">{{product.shortDescription}}</div>
+        </div>
+
       </ion-item>
     </ion-list>
   </ion-content>
