@@ -7,7 +7,10 @@
 // 'starter.controllers' is found in controllers.js
 
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services', 'productServices', 'AcctCtrl'])
+
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl'])
+
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -35,29 +38,29 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
 
   // setup an abstract state for the tabs directive
     .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
 
-  // Each tab has its own nav history stack:
+    // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl as dc'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
+    .state('tab.dash', {
+      url: '/dash',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-dash': {
+          templateUrl: 'templates/tab-shop.html',
+          controller: 'shopCtrl as sc'
+        }
+      }
+    })
+
+  .state('tab.cart', {
+      url: '/cart',
+      views: {
+        'tab-cart': {
+          templateUrl: 'templates/tab-cart.html',
+          controller: 'cartCtrl as cc'
         }
       }
     })
@@ -71,15 +74,16 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl as ac'
+    .state('tab.account', {
+      url: '/account',
+      views: {
+        'tab-account': {
+          templateUrl: 'templates/tab-account.html',
+          controller: 'AccountCtrl as ac'
+        }
       }
-    }
   })
+
     .state('tab.favs', {
       url: '/favs',
       views: {
@@ -87,16 +91,8 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
           templateUrl: 'templates/tab-favs.html'
         }
       }
-    })
-  .state('tab.create', {
-    url: "/newaccount",
-    views: {
-      'tab-create': {
-        templateUrl: 'templates/account-create.html',
-        controller: 'newAccountCtrl as na'
-      }
-    }
-  });
+    });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/account');

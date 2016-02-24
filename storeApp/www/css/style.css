@@ -37,3 +37,24 @@
   background-color: #0c824c;
   color: #fff;
 }
+.sizeUp {
+  -webkit-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+}
+.productDetails {
+  font-size: 24px;
+}
+.productTitle {
+  text-align: center;
+}
+.buyButton {
+  background-color: #00e583 !important;
+}
+.productRating {
+  padding: 15px;
+  /*display: inline-block !important;*/
+}
+.largerImg {
+  width: 29%;
+}

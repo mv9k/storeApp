@@ -1,0 +1,30 @@
+<ion-view view-title="Shop" style="text-align: center;">
+  <ion-content>
+    <ion-list>
+      <ion-item type="item-text-wrap">
+        <label class="item item-input txtBord" id="productSearch">
+          <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="sc.searchText"/>
+        </label>
+        <button class="button button-block button-outline button-calm" ng-click="sc.getProducts()">
+          Search
+        </button>
+      </ion-item>
+
+      <ion-item ng-repeat="product in sc.items track by $index">
+        <div class="productTitle"><h3>{{product.name}}</h3></div>
+        <br>
+        <img ng-src="{{product.mediumImage}}"><br>
+        <button class="button button-balanced buyButton">
+          <div class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></div>
+        </button>
+        <button class="button button-calm">
+          <div class="productDetails"> Details </div>
+        </button>
+        <br>
+        <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
+        <!--<p>{{product.shortDescription}}</p>-->
+        <ion-option-button class="button-calm sizeUp" ng-click="addFav(product.name)">FAV &nbsp;<i class="ion-ios-heart"></i></ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
