@@ -58,3 +58,6 @@
 .largerImg {
   width: 29%;
 }
+i.largerIcon {
+  font-size: 50px !important;
+}
