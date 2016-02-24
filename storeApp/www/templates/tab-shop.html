@@ -3,7 +3,7 @@
     <ion-list>
       <ion-item type="item-text-wrap">
         <label class="item item-input txtBord" id="productSearch">
-          <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="dc.searchText"/>
+          <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="sc.searchText"/>
         </label>
         <button class="button button-block button-outline button-calm" ng-click="sc.getProducts()">
           Search
@@ -23,7 +23,7 @@
         <br>
         <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
         <!--<p>{{product.shortDescription}}</p>-->
-        <ion-option-button class="button-calm sizeUp">FAV &nbsp;<i class="ion-ios-heart" ng-click="addFav(product.name)"></i></ion-option-button>
+        <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product.name)">FAV &nbsp;<i class="ion-ios-heart"></i></ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

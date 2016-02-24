@@ -17,10 +17,9 @@
 
     sc.listProducts = {items:[]};
     sc.items = [];
-    sc.addFav = addFav;
     sc.searchText = 'bike';
 
-
+    sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     cs.addToCart = addToCart;
 
@@ -46,7 +45,7 @@
       console.log('error');
     }
 
-    function addFav(product) {
+    function addFavourite(product) {
       console.log(product + ' transferring to fav service!');
       fs.addFav(product);
     }
