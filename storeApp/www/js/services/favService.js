@@ -12,8 +12,16 @@ angular.module('favServices', [])
     fs.remFav = remFav;
 
     function addFav(product) {
-      fs.favsArray.push(product);
-      console.log(fs.favsArray);
+      var invalid = false;
+      for(var i=0;i<=fs.favsArray.length;i++) {
+        if(fs.favsArray[i]==product) {
+          invalid=true;
+        }
+        console.log(fs.favsArray[i]);
+      }
+      if(!invalid){
+        fs.favsArray.push(product);
+      }
     }
 
     function remFav(product) {
@@ -22,7 +30,6 @@ angular.module('favServices', [])
 
       fs.favsArray.splice(index, 1);
 
-      console.log(fs.favsArray)
     }
 
   });
