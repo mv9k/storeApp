@@ -8,7 +8,7 @@
 
 
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl', 'favCtrl', 'favServices'])
+angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl', 'favCtrl', 'favServices', 'user.service'])
 
 
 

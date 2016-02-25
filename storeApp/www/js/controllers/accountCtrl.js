@@ -7,8 +7,8 @@
   angular.module('AcctCtrl', [])
     .controller('AccountCtrl', acctCont);
 
-  acctCont.$inject = ["$scope" , "$ionicPopup"];
-  function acctCont($scope){
+  acctCont.$inject = ["$scope" , "$ionicPopup", "userService"];
+  function acctCont($scope, $ionicPopup, userService){
     var ac = this;
     //Commit worked #1
 
@@ -96,13 +96,13 @@
           if(/password/.test(error)){$("#passBox").css("border", "solid red 1px")}
           else{$("#passBox").css("border", "solid lightgrey 1px")}
         } else {
-          var tempArr=[];
           $scope.$apply(function(){
             ac.isLoggedIn=true;
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
             ac.categories=storage[ac.thisUser.uid].keywords;
+            userService.storeKeys(ac.categories);
           });
           $("#passBox").css("border", "solid lightgrey 1px");
           $("#emailBox").css("border", "solid lightgrey 1px");
@@ -124,6 +124,7 @@
             ac.thisUser=authData.google;
             ac.usedGoogle=true;
             ac.categories=storage[ac.thisUser.id].keywords;
+            userService.storeKeys(ac.categories);
           });
         }
       })
@@ -139,7 +140,7 @@
       ac.isLoggedIn=false;
       ac.isCreatingAcc=false;
       ac.usedGoogle=false;
-      ac.showCat = false;;
+      ac.showCat = false;
       ac.emptyCat = true;
     }
     //Add Categories into the user categories array
