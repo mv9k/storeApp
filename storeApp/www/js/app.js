@@ -83,6 +83,15 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
         }
       }
   })
+    .state('tab.detail', {
+      url: '/detail',
+      views: {
+        'tab-account': {
+          templateUrl: 'templates/product-detail.html',
+          controller: 'ProductDetail as dc'
+        }
+      }
+    })
 
     .state('tab.favs', {
       url: '/favs',

@@ -17,8 +17,11 @@ angular.module('favServices', [])
     }
 
     function remFav(product) {
-      //fs.favsArray.splice(product);
-      //TODO: Backwards for loop for removing product
+
+      var index = fs.favsArray.indexOf(product);
+
+      fs.favsArray.splice(index, 1);
+
       console.log(fs.favsArray)
     }
 
