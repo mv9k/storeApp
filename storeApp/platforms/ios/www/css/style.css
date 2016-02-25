@@ -1,1 +1,63 @@
 /* Empty. Add your own CSS if you like */
+.bord{
+  border-radius: 10px;
+  border: solid white 3px;
+  padding: 10px;
+  background-color: white;
+}
+
+.txtBord{
+  border: solid lightgrey 1px;
+  font-size: x-large;
+  margin-bottom: 1px;
+}
+.profileImg{
+  width: 50px;
+  border-radius: 100%;
+}
+
+.alert{
+  background-color: #b2302f;
+}
+.categoryItem{
+  height: 50px;
+  width: 100%;
+  border: solid lightgrey 1px;
+}
+
+.item-complex .item-content, .item-radio .item-content {
+  position: relative;
+  z-index: 2;
+  padding: 16px 16px 16px 16px;
+  border: none;
+  background-color: #fff;
+}
+.button.button-balanced {
+  border-color: transparent;
+  background-color: #0c824c;
+  color: #fff;
+}
+.sizeUp {
+  -webkit-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+}
+.productDetails {
+  font-size: 24px;
+}
+.productTitle {
+  text-align: center;
+}
+.buyButton {
+  background-color: #00e583 !important;
+}
+.productRating {
+  padding: 15px;
+  /*display: inline-block !important;*/
+}
+.largerImg {
+  width: 29%;
+}
+i.largerIcon {
+  font-size: 50px !important;
+}
