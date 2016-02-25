@@ -9,9 +9,14 @@
 cartCtrl.$inject = ['cartService'];
   function cartCtrl(cartService){
     var cc = this;
-    cc.buyIt = cartService.buyIt;
     cc.cartProducts = cartService.cartProducts;
-    cc.deleteCurrent = cartService.deleteCurrent;
+    cc.clicked = function() {
+      console.log('yo');
+      alert("you've reached the controller");
+    };
+    cc.plzClick = function(){
+      cc.plzClick = cartService.addToCart();
+    }
     }
 
 })();
