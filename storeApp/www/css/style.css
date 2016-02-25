@@ -7,6 +7,14 @@
 }
 
 .txtBord{
+  border: solid 1px;
+  border-color: white white lightgrey white;
+  font-size: x-large;
+  margin-bottom: 1px;
+  padding: 0 0 0 16px;
+}
+.newCategoryText{
+  text-align: center;
   border: solid lightgrey 1px;
   font-size: x-large;
   margin-bottom: 1px;
