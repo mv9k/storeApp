@@ -11,13 +11,18 @@ function userService(){
   var us=this;
 
   us.keys=[];
+  us.isLoggedIn=false;
 
   //function vars
   us.storeKeys=storeKeys;
   us.getKeys=getKeys;
+  us.changeLogInState=changeLogInState;
 
   function storeKeys(keys){
     us.keys=keys;
+  }
+  function changeLogInState(state){
+    us.isLoggedIn=state;
   }
   function getKeys(){
     return us.keys;

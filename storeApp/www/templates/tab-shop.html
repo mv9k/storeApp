@@ -8,6 +8,9 @@
         <button class="button button-block button-outline button-calm" ng-click="sc.getProducts()">
           Search
         </button>
+        <button class="button button-block button-outline button-balanced" ng-click="sc.getAssignedProducts()">
+          Get Your Products
+        </button>
       </ion-item>
 
       <ion-item ng-repeat="product in sc.items track by $index">
