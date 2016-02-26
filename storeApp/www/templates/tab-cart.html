@@ -3,13 +3,16 @@
     <ion-list>
       <ion-item ng-repeat="product in cc.cartProducts track by $index">
         <div class="card">
-          <div class="productTitle"><h3>{{product.name}}</h3></div>
-          <h4 style="background-color:limegreen; ">$ &nbsp;{{product.salePrice}}</h4>
-          <img ng-src="{{product.mediumImage}}">
-
-          <div class="item item-text-wrap">{{product.shortDescription}}</div>
+          <div class="productTitle item item-text-wrap"><h3>{{product.name}}</h3></div>
+          <!--<div class="item item-text-wrap">{{product.shortDescription}}</div>-->
+          <img  class="col col-25" ng-src="{{product.thumbnailImage}}" style="float:left;">
+          <span style="color:orangered;">{{product.numReviews}}</span>
+          <img ng-src="{{product.customerRatingImage}}">
+                  <a ng-click="cc.buyIt(product)" class="button button-calm buyButton" href="http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D{{product.itemId}}%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi">Buy</a>
+          <span class="button button-balanced buyButton col col-25" style="float:right;"><i class="ion-social-usd"></i> &nbsp;{{product.salePrice}}</span>
         </div>
 
+        <ion-option-button class="button-assertive sizeUp" ng-click="cc.deleteCurrent($index)"><i class="ion-close-circled largerIcon"></i></ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

@@ -1,0 +1,16 @@
+<ion-view view-title="Cart">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="product in cc.cartProducts track by $index">
+        <div class="card">
+          <div class="productTitle"><h3>{{product.name}}</h3></div>
+          <h4 style="background-color:limegreen; height:50px; font-size:48px; text-align: center; border-radius:15px;"><i class="ion-social-usd"></i> &nbsp;{{product.salePrice}}</h4>
+          <center><img ng-src="{{product.mediumImage}}"></center>
+
+          <div class="item item-text-wrap">{{product.shortDescription}}</div>
+        </div>
+        <ion-option-button class="button-assertive sizeUp"><i class="ion-close-circled largerIcon"></i></ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,4 +1,6 @@
 
+.idea/workspace.xml
+
 .idea/.name
 
 .idea/misc.xml
@@ -10,4 +12,15 @@
 .idea/vcs.xml
 
 .idea/workspace.xml
+
+
+
+
+storeApp/ionic.project
+
+storeApp/.io-config.json
+
+storeApp/plugins/fetch.json
+
+*.json
 

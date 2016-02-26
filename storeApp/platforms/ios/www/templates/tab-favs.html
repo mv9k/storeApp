@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<ion-view view-title="Favs" style="text-align: center;">
+  <ion-content>
+    <ion-item ng-repeat="product in fc.favsArray track by $index">
+      <div class="productTitle"><h3>{{product.name}}</h3></div>
+      <br>
+      <img ng-src="{{product.mediumImage}}"><br>
+      <button class="button button-balanced buyButton" ng-click="sc.addToCart(product)">
+        <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
+      </button>
+      <button class="button button-calm">
+        <span class="productDetails"> Details </span>
+      </button>
+      <br>
+      <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
+      <!--<p>{{product.shortDescription}}</p>-->
+      <ion-option-button class="button-calm sizeUp" ng-click="sc.removeFav(product)"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
+    </ion-item>
+  </ion-content>
+</ion-view>
