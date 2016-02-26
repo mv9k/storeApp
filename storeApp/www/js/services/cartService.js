@@ -15,8 +15,7 @@ function cartService(){
   cs.plzClick = plzClick;
 
 
-  function plzClick(){
-    alert("you've reached the service")
+
 
   cs.buyIt = buyIt;
 
