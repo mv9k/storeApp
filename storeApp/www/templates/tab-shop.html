@@ -25,7 +25,7 @@
         <br>
         <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
         <!--<p>{{product.shortDescription}}</p>-->
-        <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product)"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
+        <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product), sc.activeButton()" ng-class="{'testClass': isActive}"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
         </div>
       </ion-item>
 

@@ -87,4 +87,6 @@ i.largerIcon {
   top: 50%;
   right: 19px;
 }
-
+.testClass {
+  background-color: black !important;
+}
