@@ -69,3 +69,24 @@
 i.largerIcon {
   font-size: 50px !important;
 }
+.delButton {
+  border: 1px solid black;
+  position: absolute !important;
+  top:0 !important;
+  right:0 !important;
+  margin-top: 1px;
+  margin-right: 2px;
+}
+.delOptionButton {
+  -webkit-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 88px -33px rgba(0,0,0,0.75);
+}
+.chevronRight {
+  position: absolute;
+  top: 50%;
+  right: 19px;
+}
+.testClass {
+  background-color: black !important;
+}

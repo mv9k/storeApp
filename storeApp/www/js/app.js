@@ -8,7 +8,7 @@
 
 
 
-angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl', 'favCtrl', 'favServices', 'user.service'])
+angular.module('storeApp', ['ngAnimate', 'ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl', 'favCtrl', 'favServices', 'user.service'])
 
 
 
@@ -83,6 +83,15 @@ angular.module('storeApp', ['ngResource', 'ionic', 'store.controllers', 'store.s
         }
       }
   })
+    .state('tab.detail', {
+      url: '/detail',
+      views: {
+        'tab-account': {
+          templateUrl: 'templates/product-detail.html',
+          controller: 'ProductDetail as dc'
+        }
+      }
+    })
 
     .state('tab.favs', {
       url: '/favs',

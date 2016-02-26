@@ -15,15 +15,23 @@
     var cs = cartService;
     var us = userService;
 
+    sc.isActive = false;
     sc.listProducts = {items:[]};
     sc.items = [];
-    sc.searchText = 'bike';
+    sc.searchText = 'tech';
 
+    sc.activeButton = activateButton;
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     sc.addToCart = addToCart;
     sc.remFav = removeFavourite;
     sc.getAssignedProducts=getAssignedProducts;
+    sc.remFav = removeFav;
+
+    function activateButton() {
+      sc.isActive = !sc.isActive;
+    }
+
 
     function getProducts() {
       console.log('searched --> ' + sc.searchText);
@@ -51,7 +59,7 @@
       fs.addFav(product);
     }
 
-    function removeFavourite(product) {
+    function removeFav(product) {
       fs.remFav(product);
     }
 
@@ -101,6 +109,7 @@
     if(us.isLoggedIn){
       getAssignedProducts();
     }
+
   }
 
 }());

@@ -12,12 +12,6 @@ function cartService(){
   cs.cartProducts = [];
   cs.deleteCurrent = deleteCurrent;
   cs.addToCart = addToCart;
-  cs.plzClick = plzClick;
-
-
-  function plzClick() {
-    alert("you've reached the service");
-  }
   cs.buyIt = buyIt;
 
   function buyIt(product){
