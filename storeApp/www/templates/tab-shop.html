@@ -1,7 +1,7 @@
 <ion-view view-title="Shop" style="text-align: center;">
   <ion-content>
     <ion-list>
-      <ion-item type="item-text-wrap">
+      <ion-item type="item-text-wrap" class="nga-default nga-fade">
         <label class="item item-input txtBord" id="productSearch">
           <input class="txtBord" type="text" placeholder="Search" name="test" ng-model="sc.searchText"/>
         </label>
@@ -10,8 +10,8 @@
         </button>
       </ion-item>
 
-      <ion-item ng-repeat="product in sc.items track by $index">
-        <div class="animated pulse" ng-class="">
+      <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade">
+        <div class="animated pulse">
         <i class="ion-chevron-right chevronRight"></i>
         <div class="productTitle"><h3>{{product.name}}</h3></div>
         <br>
