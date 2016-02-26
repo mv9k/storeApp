@@ -12,6 +12,7 @@ cartCtrl.$inject = ['cartService'];
     cc.buyIt = cartService.buyIt;
     cc.cartProducts = cartService.cartProducts;
     cc.deleteCurrent = cartService.deleteCurrent;
+    cc.allCartItems = cartService.allCartItems;
     }
 
 })();
