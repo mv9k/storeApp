@@ -12,14 +12,24 @@ angular.module('favServices', [])
     fs.remFav = remFav;
 
     function addFav(product) {
-      fs.favsArray.push(product);
-      console.log(fs.favsArray);
+      var invalid = false;
+      for(var i=0;i<=fs.favsArray.length;i++) {
+        if(fs.favsArray[i]==product) {
+          invalid=true;
+        }
+        console.log(fs.favsArray[i]);
+      }
+      if(!invalid){
+        fs.favsArray.push(product);
+      }
     }
 
     function remFav(product) {
-      //fs.favsArray.splice(product);
-      //TODO: Backwards for loop for removing product
-      console.log(fs.favsArray)
+
+      var index = fs.favsArray.indexOf(product);
+
+      fs.favsArray.splice(index, 1);
+
     }
 
   });

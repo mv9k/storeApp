@@ -22,7 +22,7 @@
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     sc.addToCart = addToCart;
-    sc.remFav = removeFavourite;
+    sc.remFav = removeFav;
 
     function getProducts() {
       console.log('searched --> ' + sc.searchText);
@@ -50,7 +50,7 @@
       fs.addFav(product);
     }
 
-    function removeFavourite(product) {
+    function removeFav(product) {
       fs.remFav(product);
     }
 
@@ -79,6 +79,7 @@
       }
       console.log(sc.listProducts, sc.items);
     }
+
   }
 
 }());
