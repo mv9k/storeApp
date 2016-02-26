@@ -103,6 +103,7 @@
             ac.profileImg=authData.password.profileImageURL;
             ac.categories=storage[ac.thisUser.uid].keywords;
             userService.storeKeys(ac.categories);
+            userService.changeLogInState(ac.isLoggedIn);
           });
           $("#passBox").css("border", "solid lightgrey 1px");
           $("#emailBox").css("border", "solid lightgrey 1px");
@@ -125,6 +126,7 @@
             ac.usedGoogle=true;
             ac.categories=storage[ac.thisUser.id].keywords;
             userService.storeKeys(ac.categories);
+            userService.changeLogInState(ac.isLoggedIn);
           });
         }
       })
@@ -142,6 +144,8 @@
       ac.usedGoogle=false;
       ac.showCat = false;
       ac.emptyCat = true;
+      userService.changeLogInState(ac.isLoggedIn);
+      userService.storeKeys(ac.categories);
     }
     //Add Categories into the user categories array
     function addCat(){
@@ -164,6 +168,7 @@
         }
         ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
         usersRef.update(fireBaseObj);
+        userService.storeKeys(ac.categories);
       }
       else{
         $("#newCategoryInput").css("border", "solid red 1px")
@@ -174,13 +179,25 @@
     }
     function removeCat(id){
       var fireBaseObj={};
-      for(var i=0;i<ac.categories.length;i++){if(id==ac.categories[i].id){ac.categories.splice(i, 1)}}
-      for(var i=0;i<ac.categories.length;i++){delete ac.categories[i].$$hashKey}
+      for(var i=0;i<ac.categories.length;i++){
+        if(id==ac.categories[i].id){
+          ac.categories.splice(i, 1)
+        }
+      }
+      for(var i=0;i<ac.categories.length;i++){
+        delete ac.categories[i].$$hashKey
+      }
       ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
       usersRef.update(fireBaseObj);
+      userService.storeKeys(ac.categories);
     }
     function blockCat(id){
-      for(var i=0;i<ac.categories.length;i++){if(id==ac.categories[i].id){ac.blockedCategories.push(ac.categories[i]); ac.categories.splice(i, 1)}}
+      for(var i=0;i<ac.categories.length;i++){
+        if(id==ac.categories[i].id){
+          ac.blockedCategories.push(ac.categories[i]);
+          ac.categories.splice(i, 1)
+        }
+      }
     }
     function addBlockedCat(){
       var invalid = false;
