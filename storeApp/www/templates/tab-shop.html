@@ -11,6 +11,7 @@
       </ion-item>
 
       <ion-item ng-repeat="product in sc.items track by $index">
+        <div class="animated pulse" ng-class="">
         <i class="ion-chevron-right chevronRight"></i>
         <div class="productTitle"><h3>{{product.name}}</h3></div>
         <br>
@@ -25,7 +26,9 @@
         <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
         <!--<p>{{product.shortDescription}}</p>-->
         <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product)"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
+        </div>
       </ion-item>
+
     </ion-list>
   </ion-content>
 </ion-view>
