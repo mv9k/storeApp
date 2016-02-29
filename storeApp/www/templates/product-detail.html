@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<ion-view view-title="Product Detail" style="text-align: center;">
+  <ion-content class="padding">
+    <h3>{{dc.product.name}}</h3>
+    <img ng-src="{{dc.product.mediumImage}}">
+    <p>
+      {{dc.product.shortDescription}}
+    </p>
+  </ion-content>
+</ion-view>
