@@ -19,7 +19,7 @@
     sc.isActive = false;
     sc.listProducts = {items:[]};
     sc.items = [];
-    sc.searchText = 'tech';
+    sc.searchText = 'bike';
 
     sc.activeButton = activateButton;
     sc.addFav = addFavourite;
