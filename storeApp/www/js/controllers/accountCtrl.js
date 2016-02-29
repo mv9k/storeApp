@@ -131,7 +131,7 @@
               ac.blockedCategories=[];
             }
             userService.storeKeys(ac.categories);
-            //userService.storeBlockedKeys(ac.blockedCategories);
+
             userService.changeLogInState(true);
           });
           $("#passBox").css("border-bottom", "solid lightgrey 1px");

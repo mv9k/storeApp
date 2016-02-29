@@ -11,8 +11,6 @@
 
 .idea/vcs.xml
 
-.idea/workspace.xml
-
 
 
 
@@ -20,11 +18,19 @@ storeApp/ionic.project
 
 storeApp/.io-config.json
 
+storeApp/.io-config.json
+
+storeApp/ionic.project
+
+storeApp/.io-config.json
+
+storeApp/plugins/fetch.json
+
 storeApp/plugins/fetch.json
 
 *.json
 
+<<<<<<< HEAD
 
 storeApp/www.zip
 
-.idea/misc.xml
