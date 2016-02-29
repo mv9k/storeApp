@@ -17,19 +17,18 @@ function cartService($http) {
   cs.cartItemIds = [];
     function buyIt() {
       //window.open('http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D' + product.itemId + '%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi')
-     cs.productLink = '';
+     //cs.productLink = '';
 
       for(var i = 0; i<cs.cartItemIds.length; i++){
         console.log(cs.cartItemIds.length);
         console.log(cs.cartItemIds);
-        alert(cs.cartItemIds.length);
         //alert('http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D' + cs.cartItemIds[i]+ '%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi')
-        $http.get("http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D" + cs.cartItemIds[i] + "%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi", {});//.then(successCallback, errorCallback);
-        //if(i == cs.cartItemIds.length){
-        //  window.open("http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D" + cs.cartItemIds[i] + "%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi");
-        //  //window.open("http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D" + cs.cartItemIds[i] + "%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi", '_blank', 'location=yes');
-        //}
+        $http.get("http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D" + cs.cartItemIds[i] + "%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi", {}).storage;
+        window.open('https://www.walmart.com/cart/?affilsrc=api&affp1=M1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8&wmlspartner=readonlyapi&sourceid=api0298ae3c8c842840409172f10b2bfb579d&veh=aff');
+
       }
+      //window.open("http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D" + cs.cartItemIds[cs.cartItemIds.length] + "%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi");
+
     }
   //function openWindow(url) {
   //  // make sure you have this: cordova plugin add cordova-plugin-inappbrowser

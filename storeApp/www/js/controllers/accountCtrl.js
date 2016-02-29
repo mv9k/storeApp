@@ -103,7 +103,7 @@
             ac.profileImg=authData.password.profileImageURL;
             ac.categories=storage[ac.thisUser.uid].keywords;
             userService.storeKeys(ac.categories);
-            userService.changeLogInState(ac.isLoggedIn);
+            userService.changeLogInState(true);
           });
           $("#passBox").css("border", "solid lightgrey 1px");
           $("#emailBox").css("border", "solid lightgrey 1px");
@@ -126,7 +126,7 @@
             ac.usedGoogle=true;
             ac.categories=storage[ac.thisUser.id].keywords;
             userService.storeKeys(ac.categories);
-            userService.changeLogInState(ac.isLoggedIn);
+            userService.changeLogInState(true);
           });
         }
       })
