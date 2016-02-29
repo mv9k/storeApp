@@ -7,14 +7,15 @@
   angular.module('ShopCtrl', [])
     .controller('shopCtrl', shopCont);
 
-  shopCont.$inject = ["$scope", "Products", "$ionicLoading", "Favs", "cartService", "userService"];
+  shopCont.$inject = ["$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService"];
 
-  function shopCont($scope, Products, $ionicLoading, Favs, cartService, userService){
+  function shopCont($scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService){
     var sc = this;
     var fs = Favs;
     var cs = cartService;
     var us = userService;
-
+    var ds = detailService;
+    console.log("Rest Controller");
     sc.isActive = false;
     sc.listProducts = {items:[]};
     sc.items = [];
@@ -27,6 +28,12 @@
     sc.remFav = removeFav;
     sc.getAssignedProducts=getAssignedProducts;
     sc.remFav = removeFav;
+    sc.getDetail = getDetail;
+
+
+    function getDetail(product) {
+       ds.storeProduct(product);
+    }
 
     function activateButton() {
       sc.isActive = !sc.isActive;
