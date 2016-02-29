@@ -43,7 +43,9 @@ function cartService($http) {
       cs.allCartItems.push(productLink);
       cs.cartItemIds.push(product.itemId);
 
-
+  function buyIt(product){
+    alert(product.name);
+    //window.open('http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D' + product.itemId + '%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi')
 
     }
 
@@ -51,3 +53,8 @@ function cartService($http) {
       cs.cartProducts.splice(currIndex, 1)
     }
   }
+  function deleteCurrent(currIndex){
+    cs.cartProducts.splice(currIndex,1)
+  }
+
+}

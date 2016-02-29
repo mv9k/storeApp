@@ -1,7 +1,8 @@
 <ion-view view-title="Favs" style="text-align: center;">
   <ion-content>
     <ion-list>
-    <ion-item ng-repeat="product in fc.favsArray track by $index">
+    <ion-item ng-repeat="product in fc.favsArray track by $index" class="nga-default nga-fade">
+      <div class="animated pulse">
       <i class="ion-chevron-right chevronRight"></i>
       <!--<div class="delButton">-->
       <!--<button class="button button-stable" ng-click="fc.remFav(product)">-->
@@ -23,6 +24,7 @@
       <br>
       <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
       <!--<p>{{product.shortDescription}}</p>-->
+      </div>
     </ion-item>
     </ion-list>
   </ion-content>

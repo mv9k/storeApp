@@ -15,14 +15,23 @@
     var cs = cartService;
     var us = userService;
 
+    sc.isActive = false;
     sc.listProducts = {items:[]};
     sc.items = [];
-    sc.searchText = 'bike';
+    sc.searchText = 'tech';
 
+    sc.activeButton = activateButton;
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     sc.addToCart = addToCart;
     sc.remFav = removeFav;
+    sc.getAssignedProducts=getAssignedProducts;
+    sc.remFav = removeFav;
+
+    function activateButton() {
+      sc.isActive = !sc.isActive;
+    }
+
 
     function getProducts() {
       console.log('searched --> ' + sc.searchText);
@@ -60,24 +69,45 @@
     }
 
     function getAssignedProducts(){
-      sc.listProducts = {items: []};
-      sc.items = [];
-      $ionicLoading.show();
-      for(var i=0;i<us.keys.length;i++){
-        Products.get(us.keys[i].key)
+      var tempItems=[];
+      sc.items=[];
+      var count = 0;
+      function repeat(){
+        Products.get(us.keys[count].key)
           .then(function(data){
-            sc.listProducts += data.data;
-            sc.items += data.data.items;
-            if(i==us.keys.length-1){
+            if(data.data.numItems!==0){
+              for(var i=0;i<data.data.items.length;i++){
+                tempItems.push(data.data.items[i]);
+              }
+            }
+            if(count!==(us.keys.length)){
+              repeat();
+            }
+            else{
               $ionicLoading.hide();
             }
-          }, function(data){
-            if(i==us.keys.length-1){
-              $ionicLoading.hide();
-            }
+          }, function(err){
+              console.log("Failure!", err);
+              if(count!==(us.keys.length)){
+                repeat();
+              }
+              else{
+                $ionicLoading.hide();
+              }
           });
+        count++;
+        sc.items=tempItems;
       }
-      console.log(sc.listProducts, sc.items);
+      if(us.isLoggedIn){
+        $ionicLoading.show();
+        repeat();
+      }
+      else{
+        alert("Please Sign In To Use This Feature");
+      }
+    }
+    if(us.isLoggedIn){
+      getAssignedProducts();
     }
 
   }
