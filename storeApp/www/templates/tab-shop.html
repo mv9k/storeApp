@@ -13,9 +13,9 @@
         </button>
       </ion-item>
 
-      <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade">
+      <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade item item-text-wrap">
         <div class="animated pulse">
-          <div class="item item-text-wrap">
+
             <i class="ion-chevron-right chevronRight"></i>
             <div class="productTitle"><h3>{{product.name}}</h3></div>
             <br>
@@ -29,7 +29,7 @@
             <br>
             <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
             <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product); sc.activeButton()" ng-class="{'testClass': isActive}"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
-          </div>
+
         </div>
       </ion-item>
 
