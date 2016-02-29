@@ -11,20 +11,29 @@ function userService(){
   var us=this;
 
   us.keys=[];
+  us.blockedKeys=[];
   us.isLoggedIn=false;
 
   //function vars
   us.storeKeys=storeKeys;
   us.getKeys=getKeys;
   us.changeLogInState=changeLogInState;
+  us.storeBlockedKeys=storeBlockedKeys;
+  us.getBlockedKeys=getBlockedKeys;
 
   function storeKeys(keys){
     us.keys=keys;
   }
-  function changeLogInState(state){
-    us.isLoggedIn=state;
-  }
   function getKeys(){
     return us.keys;
+  }
+  function storeBlockedKeys(keys){
+    us.blockedKeys=keys;
+  }
+  function getBlockedKeys(){
+    return us.blockedKeys;
+  }
+  function changeLogInState(state){
+    us.isLoggedIn=state;
   }
 }
