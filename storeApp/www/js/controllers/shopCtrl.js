@@ -24,7 +24,7 @@
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     sc.addToCart = addToCart;
-    sc.remFav = removeFavourite;
+    sc.remFav = removeFav;
     sc.getAssignedProducts=getAssignedProducts;
     sc.remFav = removeFav;
 
