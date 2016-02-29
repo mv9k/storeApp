@@ -15,19 +15,21 @@
 
       <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade">
         <div class="animated pulse">
-        <i class="ion-chevron-right chevronRight"></i>
-        <div class="productTitle"><h3>{{product.name}}</h3></div>
-        <br>
-        <img ng-src="{{product.mediumImage}}"><br>
-        <button class="button button-balanced buyButton" ng-click="sc.addToCart(product)">
-          <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
-        </button>
-        <a class="button button-calm" ng-click="sc.getDetail(product)" href="#/tab/dash/{{sc.product.itemId}}">
-          <span class="productDetails"> Details </span>
-        </a>
-        <br>
-        <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
-        <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product); sc.activeButton()" ng-class="{'testClass': isActive}"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
+          <div class="item item-text-wrap">
+            <i class="ion-chevron-right chevronRight"></i>
+            <div class="productTitle"><h3>{{product.name}}</h3></div>
+            <br>
+            <img ng-src="{{product.mediumImage}}"><br>
+            <button class="button button-balanced buyButton" ng-click="sc.addToCart(product)">
+              <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
+            </button>
+            <a class="button button-calm" ng-click="sc.getDetail(product)" href="#/tab/dash/{{sc.product.itemId}}">
+              <span class="productDetails"> Details </span>
+            </a>
+            <br>
+            <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
+            <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product); sc.activeButton()" ng-class="{'testClass': isActive}"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
+          </div>
         </div>
       </ion-item>
 
