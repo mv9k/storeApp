@@ -8,11 +8,12 @@
           <img  class="col col-25" ng-src="{{product.thumbnailImage}}" style="float:left;">
           <span style="color:orangered;">{{product.numReviews}}</span>
           <img ng-src="{{product.customerRatingImage}}">
-                  <a ng-click="cc.buyIt(product)" class="button button-calm buyButton" href="http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D{{product.itemId}}%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi">Buy</a>
+                  <a ng-click="cc.buyIt()" class="button button-calm buyButton" href="http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D{{product.itemId}}%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi">Buy</a>
           <span class="button button-balanced buyButton col col-25" style="float:right;"><i class="ion-social-usd"></i> &nbsp;{{product.salePrice}}</span>
         </div>
-
+          <a class="button-calm" href="http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D23267962%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi" href="http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D45089317%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi">Add to Cart</a>
         <ion-option-button class="button-assertive sizeUp" ng-click="cc.deleteCurrent($index)"><i class="ion-close-circled largerIcon"></i></ion-option-button>
+
       </ion-item>
     </ion-list>
   </ion-content>
