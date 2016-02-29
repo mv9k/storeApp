@@ -24,3 +24,7 @@ storeApp/plugins/fetch.json
 
 *.json
 
+
+storeApp/www.zip
+
+.idea/misc.xml
