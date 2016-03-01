@@ -7,22 +7,38 @@
   angular.module('ShopCtrl', [])
     .controller('shopCtrl', shopCont);
 
-  shopCont.$inject = ["$scope", "Products", "$ionicLoading", "Favs", "cartService"];
+  shopCont.$inject = ["$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService"];
 
-  function shopCont($scope, Products, $ionicLoading, Favs, cartService){
+  function shopCont($scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService){
     var sc = this;
     var fs = Favs;
     var cs = cartService;
-
-
+    var us = userService;
+    var ds = detailService;
+    console.log("Rest Controller");
+    sc.isActive = false;
     sc.listProducts = {items:[]};
     sc.items = [];
     sc.searchText = 'bike';
 
+    sc.activeButton = activateButton;
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
     sc.addToCart = addToCart;
-    sc.remFav = removeFavourite;
+    sc.remFav = removeFav;
+    sc.getAssignedProducts=getAssignedProducts;
+    sc.remFav = removeFav;
+    sc.getDetail = getDetail;
+
+
+    function getDetail(product) {
+       ds.storeProduct(product);
+    }
+
+    function activateButton() {
+      sc.isActive = !sc.isActive;
+    }
+
 
     function getProducts() {
       console.log('searched --> ' + sc.searchText);
@@ -50,13 +66,55 @@
       fs.addFav(product);
     }
 
-    function removeFavourite(product) {
+    function removeFav(product) {
       fs.remFav(product);
     }
 
     function addToCart(product) {
       cs.addToCart(product);
       console.log('added '+ product + ' to cart!');
+    }
+
+    function getAssignedProducts(){
+      var tempItems=[];
+      sc.items=[];
+      var count = 0;
+      function repeat(){
+        Products.get(us.keys[count].key)
+          .then(function(data){
+            if(data.data.numItems!==0){
+              for(var i=0;i<data.data.items.length;i++){
+                tempItems.push(data.data.items[i]);
+              }
+            }
+            if(count!==(us.keys.length)){
+              repeat();
+            }
+            else{
+              $ionicLoading.hide();
+            }
+          }, function(err){
+              console.log("Failure!", err);
+              if(count!==(us.keys.length)){
+                repeat();
+              }
+              else{
+                $ionicLoading.hide();
+              }
+          });
+        count++;
+        sc.items=tempItems;
+      }
+      if(us.isLoggedIn){
+        $ionicLoading.show();
+        repeat();
+      }
+      else{
+        alert("Please Sign In To Use This Feature");
+      }
+    }
+    if(us.isLoggedIn){
+      getAssignedProducts();
     }
 
   }

@@ -7,10 +7,11 @@
       <ion-slide-box on-slide-changed="slideHasChanged($index)">
         <ion-slide ng-repeat="image in dc.product.imageEntities track by $index">
           <div><img ng-src="{{dc.product.imageEntities[$index].mediumImage}}"></div>
+          <br>
+          <br>
         </ion-slide>
       </ion-slide-box>
       </div>
-
     <p>
       {{dc.product.shortDescription}}
     </p>

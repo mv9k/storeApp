@@ -7,8 +7,8 @@
   angular.module('AcctCtrl', [])
     .controller('AccountCtrl', acctCont);
 
-  acctCont.$inject = ["$scope" , "$ionicPopup", "userService"];
-  function acctCont($scope, $ionicPopup, userService){
+  acctCont.$inject = ["$scope" , "$ionicPopup", "$state", "userService"];
+  function acctCont($scope, $ionicPopup, $state, userService){
     var ac = this;
     //Commit worked #1
 
@@ -19,7 +19,11 @@
     //Temporary Get values
     var storage=[];
     ref.on("value", function(keys){
-      storage=keys.val().users;
+      if(keys.val().users!==undefined){
+        storage=keys.val().users;
+      }else{
+        usersRef.set({users: []});
+      }
     }, function(errorObject){
       console.log("The read failed: " + errorObject.code);
     });
@@ -56,6 +60,7 @@
     ac.addBlockedCategory=addBlockedCat;
     ac.blockCategory=blockCat;
     ac.removeCategory= removeCat;
+    ac.removeBlockedCategory=removeBlockedCat;
     ac.toggleCat=showCategories;
     ac.toggleBlockedCat=showBlockedCategories;
 
@@ -70,15 +75,24 @@
         if (error) {
           console.log("Error creating user:", error);
           $("#err").html(error);
-          if(/email/.test(error)){$("#emailBox").css("border", "solid red 1px")}
-          else{$("#emailBox").css("border", "solid lightgrey 1px")}
-          if(/password/.test(error)){$("#passBox").css("border", "solid red 1px")}
-          else{$("#passBox").css("border", "solid lightgrey 1px")}
+          if(/email/.test(error)){
+            $("#emailBox").css("border", "solid red 1px")
+          }
+          else{
+            $("#emailBox").css("border", "solid lightgrey 1px")
+          }
+          if(/password/.test(error)){
+            $("#passBox").css("border", "solid red 1px")
+          }
+          else{
+            $("#passBox").css("border", "solid lightgrey 1px")
+          }
         } else {
           console.log("Successfully created user account with uid:", userData.uid);
           logIntoFireAccount();
-          fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
+          fireBaseObj[userData.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories};
           usersRef.set(fireBaseObj);
+          userService.changeLogInState(true);
         }
       });
     }
@@ -91,22 +105,37 @@
         if (error) {
           console.log("Login Failed!", error);
           $("#err").html(error);
-          if(/email/.test(error)){$("#emailBox").css("border", "solid red 1px")}
-          else{$("#emailBox").css("border", "solid lightgrey 1px")}
-          if(/password/.test(error)){$("#passBox").css("border", "solid red 1px")}
-          else{$("#passBox").css("border", "solid lightgrey 1px")}
+          if(/email/.test(error)){$("#emailBox").css("border-bottom", "solid red 1px")}
+          else{$("#emailBox").css("border-bottom", "solid lightgrey 1px")}
+          if(/password/.test(error)){$("#passBox").css("border-bottom", "solid red 1px")}
+          else{$("#passBox").css("border-bottom", "solid lightgrey 1px")}
         } else {
+          ref.on("value", function(keys){
+            if(keys.val().users!==undefined){
+              storage=keys.val().users;
+            }else{
+              usersRef.set({users: []});
+            }
+          }, function(errorObject){
+            console.log("The read failed: " + errorObject.code);
+          });
           $scope.$apply(function(){
             ac.isLoggedIn=true;
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
-            ac.categories=storage[ac.thisUser.uid].keywords;
+            ac.categories=storage[authData.uid].keywords;
+            if(storage[authData.uid].blockedKeywords!==undefined){
+              ac.blockedCategories=storage[authData.uid].blockedKeywords;
+            }else{
+              ac.blockedCategories=[];
+            }
             userService.storeKeys(ac.categories);
+
             userService.changeLogInState(true);
           });
-          $("#passBox").css("border", "solid lightgrey 1px");
-          $("#emailBox").css("border", "solid lightgrey 1px");
+          $("#passBox").css("border-bottom", "solid lightgrey 1px");
+          $("#emailBox").css("border-bottom", "solid lightgrey 1px");
           console.log("Authenticated successfully with payload:", authData);
         }
       });
@@ -128,6 +157,7 @@
             userService.storeKeys(ac.categories);
             userService.changeLogInState(true);
           });
+          //$state.go("tab.account");
         }
       })
     }
@@ -139,18 +169,18 @@
       ac.validatedEmail="";
       ac.profileImg="";
       ac.categories=[];
+      ac.blockedCategories=[];
       ac.isLoggedIn=false;
       ac.isCreatingAcc=false;
       ac.usedGoogle=false;
       ac.showCat = false;
       ac.emptyCat = true;
-      userService.changeLogInState(ac.isLoggedIn);
+      userService.changeLogInState(false);
       userService.storeKeys(ac.categories);
     }
     //Add Categories into the user categories array
     function addCat(){
       var invalid = false;
-      var fireBaseObj={};
       for(var i=0;i<ac.categories.length;i++){
         if(ac.newCategory.toUpperCase()==ac.categories[i].key.toUpperCase()){
           invalid=true;
@@ -163,12 +193,7 @@
         ac.categories.push({key: ac.newCategory, id: ac.categories.length});
         ac.newCategory="";
         $("#newCategoryInput").css("border", "solid lightgrey 1px");
-        for(var i=0;i<ac.categories.length;i++){
-          delete ac.categories[i].$$hashKey
-        }
-        ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
-        usersRef.update(fireBaseObj);
-        userService.storeKeys(ac.categories);
+        updateFireBase();
       }
       else{
         $("#newCategoryInput").css("border", "solid red 1px")
@@ -178,18 +203,12 @@
       }
     }
     function removeCat(id){
-      var fireBaseObj={};
       for(var i=0;i<ac.categories.length;i++){
         if(id==ac.categories[i].id){
           ac.categories.splice(i, 1)
         }
       }
-      for(var i=0;i<ac.categories.length;i++){
-        delete ac.categories[i].$$hashKey
-      }
-      ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories};
-      usersRef.update(fireBaseObj);
-      userService.storeKeys(ac.categories);
+      updateFireBase();
     }
     function blockCat(id){
       for(var i=0;i<ac.categories.length;i++){
@@ -198,6 +217,7 @@
           ac.categories.splice(i, 1)
         }
       }
+      updateFireBase();
     }
     function addBlockedCat(){
       var invalid = false;
@@ -212,7 +232,8 @@
       if(!invalid){
         ac.blockedCategories.push({key: ac.newBlockedCategory, id: ac.blockedCategories.length});
         ac.newBlockedCategory="";
-        $("#newBlockedCategoryInput").css("border", "solid lightgrey 1px")
+        $("#newBlockedCategoryInput").css("border", "solid lightgrey 1px");
+        updateFireBase();
       }
       else{
         $("#newBlockedCategoryInput").css("border", "solid red 1px")
@@ -221,6 +242,14 @@
         ac.emptyCat=false;
       }
     }
+    function removeBlockedCat(id){
+      for(var i=0;i<ac.blockedCategories.length;i++){
+        if(id==ac.blockedCategories[i].id){
+          ac.blockedCategories.splice(i, 1)
+        }
+      }
+      updateFireBase();
+    }
     function showCategories(){
       ac.showCat?ac.showCat=false:ac.showCat=true;
       ac.showCat?$("#toggleCat").html("Hide Categories"):$("#toggleCat").html("Show Categories");
@@ -228,6 +257,46 @@
     function showBlockedCategories(){
       ac.showBlockedCat?ac.showBlockedCat=false:ac.showBlockedCat=true;
       ac.showBlockedCat?$("#toggleBlockedCat").html("Hide Categories"):$("#toggleBlockedCat").html("Show Categories");
+    }
+    //Form validation
+    $("body").keyup(function () {
+      if(!ac.isLoggedIn){
+        var email = $("#emailBox > input").val();
+        var password = $("#passBox > input").val();
+        var error="";
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(email.length>=12&&!re.test(email)&&$('input:focus').val()==email){
+          $("#emailBox").css("border-bottom", "solid red 1px");
+        }else{
+          $("#emailBox").css("border-bottom", "solid lightgrey 1px")
+        }
+        if($('input:focus').val()==password&&!re.test(email)&&password!=""){
+          error="Please enter a valid email before entering your password";
+          $("#emailBox").css("border-bottom", "solid red 1px");
+        }else{
+          error="";
+        }
+        $("#err").html(error);
+      }
+    });
+    $("#emailBox > input").keyup(function(){
+      console.log("Yes!");
+    });
+
+    function updateFireBase(){
+      var fireBaseObj={};
+      for(var i=0;i<ac.blockedCategories.length;i++){
+        ac.blockedCategories[i].id=i;
+        delete ac.blockedCategories[i].$$hashKey
+      }
+      for(var i=0;i<ac.categories.length;i++){
+        ac.categories[i].id=i;
+        delete ac.categories[i].$$hashKey
+      }
+      ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories, blockedKeywords: ac.blockedCategories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories};
+      userService.storeKeys(ac.categories);
+      userService.storeBlockedKeys(ac.blockedCategories);
+      usersRef.update(fireBaseObj);
     }
   }
 }());
