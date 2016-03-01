@@ -328,7 +328,5 @@
     $scope.$on('modal.removed', function() {
       // Execute action
     });
-
->>>>>>> kris
   }
 }());
