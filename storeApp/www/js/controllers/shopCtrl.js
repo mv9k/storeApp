@@ -12,6 +12,7 @@
   function shopCont($scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService, $ionicModal){
 
     $scope.toggle = false;
+    $scope.buyToggle = false;
 
     var sc = this;
     var fs = Favs;
