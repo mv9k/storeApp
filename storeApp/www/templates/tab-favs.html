@@ -1,18 +1,14 @@
 <ion-view view-title="Favs" style="text-align: center;">
   <ion-content>
+    <button class="button button-block button-outline button-calm" ng-click="fc.getFavs()">
+      Reload
+    </button>
     <ion-list>
     <ion-item ng-repeat="product in fc.favsArray track by $index" class="nga-default nga-fade">
       <div class="animated pulse">
-      <i class="ion-chevron-right chevronRight"></i>
-      <!--<div class="delButton">-->
-      <!--<button class="button button-stable" ng-click="fc.remFav(product)">-->
-        <!--<span> X </span>-->
-      <!--</button>-->
-      <!--</div>-->
-
       <div class="productTitle"><h3>{{product.name}}</h3></div>
       <br>
-      <img ng-src="{{product.mediumImage}}"><br>
+      <img ng-src="{{product.mediumImage}}" class="itemImg"><br>
       <button class="button button-balanced buyButton" ng-click="fc.addToCart(product)">
         <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
       </button>

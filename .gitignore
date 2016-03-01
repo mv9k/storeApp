@@ -30,12 +30,7 @@ storeApp/plugins/fetch.json
 
 *.json
 
-*.json
+<<<<<<< HEAD
 
-*.json
+storeApp/www.zip
 
-storeApp/.io-config.json
-
-storeApp/ionic.project
-
-storeApp/plugins/fetch.json
