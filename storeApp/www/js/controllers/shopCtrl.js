@@ -80,11 +80,23 @@
       sc.items=[];
       var count = 0;
       function repeat(){
+        var blocked=us.getBlockedKeys();
         Products.get(us.keys[count].key)
           .then(function(data){
             if(data.data.numItems!==0){
               for(var i=0;i<data.data.items.length;i++){
-                tempItems.push(data.data.items[i]);
+                var isBlocked=false;
+                for(var j=0;j<blocked.length;j++){
+                  var a = new RegExp(blocked[j].key, "g");
+                  if(data.data.items[i]!==undefined){
+                    if(a.test(data.data.items[i].name||a.test(data.data.items[i].longDescription))){
+                      isBlocked=true;
+                    }
+                  }
+                }
+                if(!isBlocked){
+                  tempItems.push(data.data.items[i]);
+                }
               }
             }
             if(count!==(us.keys.length)){
@@ -105,15 +117,14 @@
         count++;
         sc.items=tempItems;
       }
-      if(us.isLoggedIn){
+      if(us.getLogInState()){
         $ionicLoading.show();
         repeat();
-      }
-      else{
+      }else{
         alert("Please Sign In To Use This Feature");
       }
     }
-    if(us.isLoggedIn){
+    if(us.getLogInState()){
       getAssignedProducts();
     }
 

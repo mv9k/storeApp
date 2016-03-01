@@ -93,3 +93,6 @@ i.largerIcon {
 .cardNoBorder {
   border: none !important;
 }
+.itemImg{
+  max-width: 100%;
+}

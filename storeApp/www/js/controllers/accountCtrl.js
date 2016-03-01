@@ -90,9 +90,9 @@
         } else {
           console.log("Successfully created user account with uid:", userData.uid);
           logIntoFireAccount();
-          fireBaseObj[userData.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories};
+          fireBaseObj[userData.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories, favs: []};
           usersRef.set(fireBaseObj);
-          userService.changeLogInState(true);
+          userService.changeLogInState(true, false);
         }
       });
     }
@@ -114,7 +114,7 @@
             if(keys.val().users!==undefined){
               storage=keys.val().users;
             }else{
-              usersRef.set({users: []});
+              //usersRef.set({users: []});
             }
           }, function(errorObject){
             console.log("The read failed: " + errorObject.code);
@@ -125,15 +125,18 @@
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
             ac.categories=storage[authData.uid].keywords;
+            if(storage[authData.uid].favs!==undefined){
+              ac.favorites = storage[authData.uid].favs;
+            }
             if(storage[authData.uid].blockedKeywords!==undefined){
               ac.blockedCategories=storage[authData.uid].blockedKeywords;
             }else{
               ac.blockedCategories=[];
             }
-            userService.storeKeys(ac.categories);
-
-            userService.changeLogInState(true);
           });
+          userService.changeLogInState(true, false);
+          userService.getFavs();
+          updateFireBase();
           $("#passBox").css("border-bottom", "solid lightgrey 1px");
           $("#emailBox").css("border-bottom", "solid lightgrey 1px");
           console.log("Authenticated successfully with payload:", authData);
@@ -155,7 +158,7 @@
             ac.usedGoogle=true;
             ac.categories=storage[ac.thisUser.id].keywords;
             userService.storeKeys(ac.categories);
-            userService.changeLogInState(true);
+            userService.changeLogInState(true, false);
           });
           //$state.go("tab.account");
         }
@@ -284,6 +287,7 @@
     });
 
     function updateFireBase(){
+      console.log("Account Ctrl says the favs are: ", ac.favorites);
       var fireBaseObj={};
       for(var i=0;i<ac.blockedCategories.length;i++){
         ac.blockedCategories[i].id=i;
@@ -293,9 +297,10 @@
         ac.categories[i].id=i;
         delete ac.categories[i].$$hashKey
       }
-      ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories, blockedKeywords: ac.blockedCategories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories};
+      ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories, blockedKeywords: ac.blockedCategories, favs: ac.favorites}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories, favs: ac.favorites};
       userService.storeKeys(ac.categories);
       userService.storeBlockedKeys(ac.blockedCategories);
+      userService.storeUser(ac.thisUser);
       usersRef.update(fireBaseObj);
     }
   }
