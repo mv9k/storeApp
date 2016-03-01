@@ -10,9 +10,13 @@
         </ion-slide>
       </ion-slide-box>
       </div>
-
-    <p>
-      {{dc.product.shortDescription}}
-    </p>
+    <button class="button button-balanced buyButton" ng-click="dc.addToCart(dc.product)">
+      <span class="productDetails"><i class="ion-social-usd"></i> {{dc.product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
+    </button>
+    <div style="text-align: left;">
+      <p>
+        {{dc.product.shortDescription}}
+      </p>
+    </div>
   </ion-content>
 </ion-view>
