@@ -32,7 +32,10 @@
             </a>
             <br>
             <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
-            <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product)"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
+            <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product); toggle = !toggle">
+              <i class="ion-ios-heart-outline largerIcon favAnim off" ng-hide="toggle" ng-animate=" 'favAnim' "></i>
+              <i class="ion-ios-heart largerIcon favAnim on" ng-show="toggle" ng-animate=" 'favAnim' "></i>
+            </ion-option-button>
         </div>
       </ion-item>
 
