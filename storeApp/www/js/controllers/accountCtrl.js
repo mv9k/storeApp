@@ -7,8 +7,8 @@
   angular.module('AcctCtrl', [])
     .controller('AccountCtrl', acctCont);
 
-  acctCont.$inject = ["$scope" , "$ionicPopup", "userService"];
-  function acctCont($scope, $ionicPopup, userService){
+  acctCont.$inject = ["$scope" , "$ionicPopup", "userService", "$ionicModal"];
+  function acctCont($scope, $ionicPopup, userService, $ionicModal){
     var ac = this;
     //Commit worked #1
 
@@ -229,5 +229,33 @@
       ac.showBlockedCat?ac.showBlockedCat=false:ac.showBlockedCat=true;
       ac.showBlockedCat?$("#toggleBlockedCat").html("Hide Categories"):$("#toggleBlockedCat").html("Show Categories");
     }
+
+    /////////////////////// Modal! /////////////////////////
+
+    $ionicModal.fromTemplateUrl('templates/info-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
+
   }
 }());
