@@ -8,7 +8,22 @@
 
 
 
-angular.module('storeApp', ['ngAnimate', 'ngResource', 'ionic', 'store.controllers', 'store.services','cartService', 'productServices', 'AcctCtrl', 'cartModule', 'ShopCtrl', 'favCtrl', 'favServices', 'user.service'])
+angular.module('storeApp', [
+  'ngAnimate',
+  'ngResource',
+  'ionic',
+  'store.controllers',
+  'store.services',
+  'cartService',
+  'productServices',
+  'AcctCtrl',
+  'cartModule',
+  'ShopCtrl',
+  'favCtrl',
+  'favServices',
+  'user.service',
+  'detailCtrl',
+  'detailService'])
 
 
 
@@ -64,15 +79,6 @@ angular.module('storeApp', ['ngAnimate', 'ngResource', 'ionic', 'store.controlle
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
 
     .state('tab.account', {
       url: '/account',
@@ -83,12 +89,13 @@ angular.module('storeApp', ['ngAnimate', 'ngResource', 'ionic', 'store.controlle
         }
       }
   })
+
     .state('tab.detail', {
-      url: '/detail',
+      url: '/dash/:detailId',
       views: {
-        'tab-account': {
+        'tab-dash': {
           templateUrl: 'templates/product-detail.html',
-          controller: 'ProductDetail as dc'
+          controller: 'detailCtrl as dc'
         }
       }
     })

@@ -90,3 +90,6 @@ i.largerIcon {
 .testClass {
   background-color: black !important;
 }
+.cardNoBorder {
+  border: none !important;
+}
