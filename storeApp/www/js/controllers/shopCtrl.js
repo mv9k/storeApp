@@ -7,9 +7,9 @@
   angular.module('ShopCtrl', [])
     .controller('shopCtrl', shopCont);
 
-  shopCont.$inject = ["$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService", "$ionicModal"];
+  shopCont.$inject = ["$timeout", "$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService", "$ionicModal"];
 
-  function shopCont($scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService, $ionicModal){
+  function shopCont($timeout, $scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService, $ionicModal){
 
     $scope.toggle = false;
     $scope.buyToggle = false;
@@ -24,7 +24,6 @@
     sc.listProducts = {items:[]};
     sc.items = [];
     sc.searchText = 'bike';
-
     sc.activeButton = activateButton;
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
@@ -75,7 +74,10 @@
     }
 
     function addToCart(product) {
-      cs.addToCart(product);
+      $timeout(function(){
+        cs.addToCart(product);
+
+      });
       console.log('added '+ product + ' to cart!');
     }
 
