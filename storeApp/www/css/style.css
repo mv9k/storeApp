@@ -93,3 +93,13 @@ i.largerIcon {
 .cardNoBorder {
   border: none !important;
 }
+.itemImg {
+  max-width: 100%;
+}
+.infoImg {
+  max-width: 50%;
+}
+.infoIcon {
+  padding: 2px;
+  font-size: 25px !important;
+}

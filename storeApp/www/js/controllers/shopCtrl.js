@@ -7,9 +7,9 @@
   angular.module('ShopCtrl', [])
     .controller('shopCtrl', shopCont);
 
-  shopCont.$inject = ["$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService"];
+  shopCont.$inject = ["$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService", "$ionicModal"];
 
-  function shopCont($scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService){
+  function shopCont($scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService, $ionicModal){
     var sc = this;
     var fs = Favs;
     var cs = cartService;
@@ -116,6 +116,33 @@
     if(us.isLoggedIn){
       getAssignedProducts();
     }
+
+    /////////////////////// Modal! /////////////////////////
+
+    $ionicModal.fromTemplateUrl('templates/info-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
 
   }
 

@@ -1,4 +1,9 @@
 <ion-view view-title="Store App" style="text-align: center; background-color: lightgrey">
+  <ion-nav-buttons side="secondary">
+    <button class="button" ng-click="openModal()">
+      <i class="ion ion-information-circled infoIcon"></i>
+    </button>
+  </ion-nav-buttons>
   <ion-content class="padding">
     <div ng-if="!ac.isLoggedIn">
       <ng-form>

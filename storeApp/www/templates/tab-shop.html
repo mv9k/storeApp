@@ -1,4 +1,9 @@
 <ion-view view-title="Shop" style="text-align: center;">
+  <ion-nav-buttons side="secondary">
+    <button class="button" ng-click="openModal()">
+      <i class="ion ion-information-circled infoIcon"></i>
+    </button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list>
       <ion-item type="item-text-wrap" class="nga-default nga-fade">
@@ -15,11 +20,10 @@
 
       <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade item item-text-wrap">
         <div class="animated pulse">
-
             <i class="ion-chevron-right chevronRight"></i>
-            <div class="productTitle"><h3>{{product.name}}</h3></div>
+            <div class="productTitle item-text-wrap"><h3>{{product.name}}</h3></div>
             <br>
-            <img ng-src="{{product.mediumImage}}"><br>
+            <img ng-src="{{product.mediumImage}}" class="itemImg"><br>
             <button class="button button-balanced buyButton" ng-click="sc.addToCart(product)">
               <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
             </button>
@@ -28,8 +32,7 @@
             </a>
             <br>
             <div class="productRating"><img class="largerImg" ng-src="{{product.customerRatingImage}}"></div>
-            <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product); sc.activeButton()" ng-class="{'testClass': isActive}"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
-
+            <ion-option-button class="button-calm sizeUp" ng-click="sc.addFav(product)"><i class="ion-ios-heart-outline largerIcon"></i></ion-option-button>
         </div>
       </ion-item>
 
