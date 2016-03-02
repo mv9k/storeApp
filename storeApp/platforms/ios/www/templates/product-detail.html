@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<ion-view view-title="Product Detail" style="text-align: center;">
+  <ion-content class="padding">
+    <h3>{{dc.product.name}}</h3>
 
-</body>
-</html>
+      <div class="item item-text-wrap">
+    <!--<img ng-src="{{dc.product.mediumImage}}">-->
+      <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <ion-slide ng-repeat="image in dc.product.imageEntities track by $index">
+          <div><img ng-src="{{dc.product.imageEntities[$index].mediumImage}}"></div>
+          <br>
+          <br>
+        </ion-slide>
+      </ion-slide-box>
+      </div>
+    <p>
+      {{dc.product.shortDescription}}
+    </p>
+  </ion-content>
+</ion-view>

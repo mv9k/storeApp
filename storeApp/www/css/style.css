@@ -103,3 +103,20 @@ i.largerIcon {
   padding: 2px;
   font-size: 25px !important;
 }
+.favAnim {
+  color: white !important;
+}
+.on {
+  color: #9d1dff !important;
+}
+.off {
+  color: white !important;
+}
+
+.favAnim-show-setup, .favAnim-hide-setup {
+  -webkit-transition:all linear 0.3s;
+  -moz-transition:all linear 0.3s;
+  -ms-transition:all linear 0.3s;
+  -o-transition:all linear 0.3s;
+  transition:all linear 0.3s;
+}

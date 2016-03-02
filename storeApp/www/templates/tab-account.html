@@ -10,15 +10,15 @@
         <div class="bord">
           <h1>Log in</h1>
           <span style="color: red" id="err"></span>
-          <div class="list">
+          <div class="list" id="loginDiv">
           <label class="item item-input txtBord item-floating-label" id="emailBox">
-            <span class="input-label">Email</span>
+            <span class="input-label" id="emailInput">Email</span>
             <input class="txtBord emailReq" type="email" placeholder="Email" ng-model="ac.email"/>
           </label>
           <br>
             <label class="item item-input txtBord item-floating-label" id="passBox">
               <span class="input-label">Password</span>
-              <input class="txtBord passReq" type="text" placeholder="Password" ng-model="ac.password"/>
+              <input class="txtBord passReq" type="password" placeholder="Password" ng-model="ac.password"/>
             </label>
           </div>
           <button class="button button-block button-positive" ng-click="ac.logIn()">
@@ -76,7 +76,7 @@
           <ion-list>
             <ion-item class="item-remove-animate categoryItem" ng-repeat="cat in ac.blockedCategories.slice().reverse()" type="item-text-wrap">
               <p>{{cat.key}}</p>
-              <ion-option-button class="button-assertive" ng-click="ac.removeCategory(cat.id)">
+              <ion-option-button class="button-assertive" ng-click="ac.removeBlockedCategory(cat.id)">
                 Delete
               </ion-option-button>
             </ion-item>
