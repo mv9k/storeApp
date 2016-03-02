@@ -22,9 +22,9 @@ function cartService($http) {
     //console.log('total price array before anything'+cs.totalPriceArr);
     var total = Number(0);
     for(var i =0; i < cs.cartProducts.length; i++){
-      total += parseInt(cs.totalPriceArr[i], 10);
+      total += parseFloat(cs.totalPriceArr[i], 10);
     }
-    cs.actualPrice += total;
+    cs.actualPrice = total;
     return cs.actualPrice;
   }
   function buyIt() {
@@ -63,6 +63,7 @@ function cartService($http) {
     cs.totalPriceArr.push(product.salePrice);
   }
   function deleteCurrent(currIndex){
-    cs.cartProducts.splice(currIndex,1)
+    cs.cartProducts.splice(currIndex,1);
+    cs.totalPriceArr.splice(currIndex, 1);
   }
 }
