@@ -18,13 +18,14 @@ function cartService($http) {
   cs.cartItemIds = [];
   cs.totalPriceArr = [];
   cs.totalPrice = totalPrice;
+
   function totalPrice(){
     //console.log('total price array before anything'+cs.totalPriceArr);
     var total = Number(0);
     for(var i =0; i < cs.cartProducts.length; i++){
-      total += parseInt(cs.totalPriceArr[i], 10);
+      total += parseFloat(cs.totalPriceArr[i], 10);
     }
-    cs.actualPrice += total;
+    cs.actualPrice = total;
     return cs.actualPrice;
   }
   function buyIt() {
@@ -55,14 +56,22 @@ function cartService($http) {
   //  return false;
   //}
   function addToCart(product) {
+    var invalid=false;
     var productLink = 'http://c.qaffil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D' + product.itemId + '%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi';
-    console.log(product);
-    cs.cartProducts.push(product);
-    cs.allCartItems.push(productLink);
-    cs.cartItemIds.push(product.itemId);
-    cs.totalPriceArr.push(product.salePrice);
+    for(var i=0;i<cs.cartProducts.length;i++){
+      if(cs.cartProducts[i].itemId==product.itemId){
+        invalid=true;
+      }
+    }
+    if(!invalid){
+      cs.cartProducts.push(product);
+      cs.allCartItems.push(productLink);
+      cs.cartItemIds.push(product.itemId);
+      cs.totalPriceArr.push(product.salePrice);
+    }
   }
   function deleteCurrent(currIndex){
-    cs.cartProducts.splice(currIndex,1)
+    cs.cartProducts.splice(currIndex,1);
+    cs.totalPriceArr.splice(currIndex, 1);
   }
 }

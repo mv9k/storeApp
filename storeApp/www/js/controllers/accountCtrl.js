@@ -135,8 +135,22 @@
               ac.blockedCategories=storage[authData.uid].blockedKeywords;
             }else{
               ac.blockedCategories=[];
+            if(storage[authData.uid]!==undefined){
+              if(storage[authData.uid].keywords!==undefined){
+                ac.categories=storage[authData.uid].keywords;
+              }
+              if(storage[authData.uid].favs!==undefined){
+                ac.favorites = storage[authData.uid].favs;
+              }
+              if(storage[authData.uid].blockedKeywords!==undefined){
+                ac.blockedCategories=storage[authData.uid].blockedKeywords;
+              }else{
+                ac.blockedCategories=[];
+              }
             }
-          });
+          }
+            }
+          );
           userService.changeLogInState(true, false);
           userService.getFavs();
           updateFireBase();
@@ -159,9 +173,21 @@
             ac.profileImg=authData.google.profileImageURL;
             ac.thisUser=authData.google;
             ac.usedGoogle=true;
-            ac.categories=storage[ac.thisUser.id].keywords;
-            userService.storeKeys(ac.categories);
-            userService.changeLogInState(true, false);
+            if(storage[authData.id]!==undefined){
+              if(storage[authData.id].keywords!==undefined){
+                ac.categories=storage[authData.id].keywords;
+                userService.storeKeys(ac.categories);
+              }
+              if(storage[authData.id].favs!==undefined){
+                ac.favorites = storage[authData.id].favs;
+              }
+              if(storage[authData.id].blockedKeywords!==undefined){
+                ac.blockedCategories=storage[authData.id].blockedKeywords;
+              }else{
+                ac.blockedCategories=[];
+              }
+            }
+            userService.changeLogInState(true, true);
           });
           //$state.go("tab.account");
         }
