@@ -10,7 +10,7 @@
           <img ng-src="{{product.customerRatingImage}}">
           <span class="col col-25" style="float:right; color:green; font-size:18pt;">${{product.salePrice}}</span>
         </div>
-        <ion-option-button class="button-assertive sizeUp" ng-click="cc.deleteCurrent($index)"><i class="ion-close-circled largerIcon"></i></ion-option-button>
+        <ion-option-button class="button-assertive sizeUp" ng-click="cc.remove($index)"><i class="ion-close-circled largerIcon"></i></ion-option-button>
       </ion-item>
       <div class="card">
         <ion-item class="item item-wrap-text">
