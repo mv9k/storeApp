@@ -125,7 +125,9 @@
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
-            ac.categories=storage[authData.uid].keywords;
+            if(storage[authData.uid].keywords!==undefined){
+              ac.categories=storage[authData.uid].keywords
+            }
             if(storage[authData.uid].favs!==undefined){
               ac.favorites = storage[authData.uid].favs;
             }
@@ -289,7 +291,6 @@
     });
 
     function updateFireBase(){
-      console.log("Account Ctrl says the favs are: ", ac.favorites);
       var fireBaseObj={};
       for(var i=0;i<ac.blockedCategories.length;i++){
         ac.blockedCategories[i].id=i;

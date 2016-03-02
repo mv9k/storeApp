@@ -126,11 +126,12 @@
       if(us.getLogInState()){
         $ionicLoading.show();
         repeat();
+
       }else{
         alert("Please Sign In To Use This Feature");
       }
     }
-    if(us.getLogInState()){
+    if(us.getLogInState()&&us.keys.length>0){
       getAssignedProducts();
     }
 
