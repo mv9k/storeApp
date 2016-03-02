@@ -7,9 +7,9 @@
   angular.module('favCtrl', [])
     .controller('favCtrl', favCont);
 
-  favCont.$inject = ["Favs", "cartService", "Products", "userService", "$ionicLoading"];
+  favCont.$inject = ["Favs", "cartService", "Products", "userService", "$ionicLoading", "$scope", "$timeout"];
 
-  function favCont(Favs, cartService, Products, userService, $ionicLoading){
+  function favCont(Favs, cartService, Products, userService, $ionicLoading, $scope, $timeout){
     var fc = this;
     var fs = Favs;
 
@@ -35,17 +35,18 @@
     }
 
     function getFavs(){
-      var userFavs = userService.getFavs();
-      console.log("Here are the favorites for this account", userFavs);
+      if(userService.getLogInState()){
+        var userFavs = userService.getFavs();
+      }
+      //console.log("Here are the favorites for this account", userFavs);
       if(userFavs!==undefined){
         var iterations=userFavs.length;
-        console.log("Init iterations: " + iterations);
-        fs.clearFavs();
+        //console.log("Init iterations: " + iterations);
         $ionicLoading.show();
       }
       var count=0;
       function retrieve(){
-        console.log("Beginning query for: ", userFavs[count]);
+        //console.log("Beginning query for: ", userFavs[count]);
         Products.get(userFavs[count])
           .then(function(data){
             fs.addFav(data.data.items[0]);
@@ -66,15 +67,22 @@
             }
           });
       }
-      if(iterations!==undefined&&iterations>0){
+      if(userService.getLogInState()&&iterations!==undefined&&iterations>0){
         console.log("started");
-        retrieve();
+        retrieve();retrieve();
+      }else if(!userService.getLogInState()){
+        alert("Please sign in to use this feature");
       }
       Products.get();
     }
-    if(userService.getLogInState()){
-      getFavs();
-    }
+    $scope.$on("$ionicView.beforeEnter",function(){
+      $timeout(function(){
+        if(userService.getLogInState()){
+          getFavs();
+        }
+      });
+    });
+
   }
 
 }());

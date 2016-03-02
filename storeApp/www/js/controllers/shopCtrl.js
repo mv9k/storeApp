@@ -11,7 +11,7 @@
 
   function shopCont($timeout, $scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService, $ionicModal){
 
-    $scope.toggle = false;
+    $scope.favToggle = false;
     $scope.buyToggle = false;
 
     var sc = this;
@@ -19,7 +19,7 @@
     var cs = cartService;
     var us = userService;
     var ds = detailService;
-    console.log("Rest Controller");
+
     sc.isActive = false;
     sc.listProducts = {items:[]};
     sc.items = [];
@@ -33,7 +33,6 @@
     sc.remFav = removeFav;
     sc.getDetail = getDetail;
 
-
     function getDetail(product) {
        ds.storeProduct(product);
     }
@@ -41,7 +40,6 @@
     function activateButton() {
       sc.isActive = !sc.isActive;
     }
-
 
     function getProducts() {
       console.log('searched --> ' + sc.searchText);
@@ -66,7 +64,13 @@
     }
 
     function addFavourite(product) {
-      fs.addFav(product);
+      if(us.getLogInState()) {
+        fs.addFav(product);
+        product.isFav=true;
+      }
+      else {
+        alert('Please sign in to use this feature.')
+      }
     }
 
     function removeFav(product) {
@@ -81,7 +85,46 @@
       console.log('added '+ product + ' to cart!');
     }
 
+    function getFavs(){
+      var userFavs = userService.getFavs();
+      //console.log("Here are the favorites for this account", userFavs);
+      if(userFavs!==undefined){
+        var iterations=userFavs.length;
+        //console.log("Init iterations: " + iterations);
+        $ionicLoading.show();
+      }
+      var count=0;
+      function retrieve(){
+        //console.log("Beginning query for: ", userFavs[count]);
+        Products.get(userFavs[count])
+          .then(function(data){
+            //fs.addFav(data.data.items[0]);
+            //console.log("Found the product!: ", data.data.items[0]);
+            count++;
+            if(count<iterations){
+              retrieve();
+            }else{
+              $ionicLoading.hide();
+            }
+          }, function(){
+            console.log("There was an error retrieving the product: ", userFavs[count]);
+            count++;
+            if(count<iterations){
+              retrieve();
+            }else{
+              $ionicLoading.hide();
+            }
+          });
+      }
+      if(iterations!==undefined&&iterations>0){
+        console.log("started");
+        retrieve();
+      }
+      Products.get();
+    }
+
     function getAssignedProducts(){
+      getFavs();
       var tempItems=[];
       sc.items=[];
       var count = 0;
@@ -90,7 +133,9 @@
         Products.get(us.keys[count].key)
           .then(function(data){
             if(data.data.numItems!==0){
+              var ourFavs=Favs.returnFav();
               for(var i=0;i<data.data.items.length;i++){
+                var isFav=false;
                 var isBlocked=false;
                 for(var j=0;j<blocked.length;j++){
                   var a = new RegExp(blocked[j].key, "g");
@@ -100,7 +145,14 @@
                     }
                   }
                 }
+                for(var j=0;j<ourFavs.length;j++){
+                  if(ourFavs[j].itemId==data.data.items[i].itemId){
+                    isFav=true;
+                    console.log("Found a fav! ", ourFavs[j]);
+                  }
+                }
                 if(!isBlocked){
+                  data.data.items[i].isFav=isFav;
                   tempItems.push(data.data.items[i]);
                 }
               }
@@ -123,7 +175,7 @@
         count++;
         sc.items=tempItems;
       }
-      if(us.getLogInState()){
+      if(us.getLogInState()&&us.keys.length!==0){
         $ionicLoading.show();
         repeat();
       }else{
@@ -133,6 +185,13 @@
     if(us.getLogInState()){
       getAssignedProducts();
     }
+    $scope.$on("$ionicView.beforeEnter",function(){
+      $timeout(function(){
+        if(userService.getLogInState()){
+          getFavs();
+        }
+      });
+    });
 
     /////////////////////// Modal! /////////////////////////
 
