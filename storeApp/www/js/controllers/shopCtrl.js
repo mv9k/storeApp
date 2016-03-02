@@ -179,6 +179,7 @@
         repeat();
       }else{
         alert("Please Sign In To Use This Feature");
+        $ionicLoading.hide();
       }
     }
     if(us.getLogInState()){
