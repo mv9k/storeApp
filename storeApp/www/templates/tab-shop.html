@@ -24,10 +24,12 @@
             <div class="productTitle item-text-wrap"><h3>{{product.name}}</h3></div>
             <br>
             <img ng-src="{{product.mediumImage}}" class="itemImg"><br>
-            <button class="button button-balanced buyButton" ng-click="sc.addToCart(product); buyToggle = !buyToggle">
-              <span class="productDetails" ng-hide="buyToggle"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
-              <span class="productDetails" ng-show="buyToggle"><i class="ion-social-usd"></i> Added! &nbsp; <i class="ion-bag"></i></span>
+            <button class="button button-balanced buyButton" ng-click="sc.addToCart(product); buyToggle = !buyToggle" ng-hide="buyToggle">
+              <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
             </button>
+            <span class="button button-balanced" ng-show="buyToggle">
+              <span class="productDetails"><i class="ion-social-usd"></i> Added! &nbsp; <i class="ion-bag"></i></span>
+            </span>
             <a class="button button-calm" ng-click="sc.getDetail(product)" href="#/tab/dash/{{sc.product.itemId}}">
               <span class="productDetails"> Details </span>
             </a>

@@ -80,7 +80,6 @@
     function addToCart(product) {
       $timeout(function(){
         cs.addToCart(product);
-
       });
       console.log('added '+ product + ' to cart!');
     }
