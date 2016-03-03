@@ -185,7 +185,7 @@
         alert("Please sign in to use this feature.")
       }
     }
-    if(us.getLogInState()){
+    if(us.getLogInState()&&us.keys.length>0){
       getAssignedProducts();
     }
     $scope.$on("$ionicView.beforeEnter",function(){

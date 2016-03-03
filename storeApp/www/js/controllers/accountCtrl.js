@@ -125,6 +125,16 @@
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
+            if(storage[authData.uid].keywords!==undefined){
+              ac.categories=storage[authData.uid].keywords
+            }
+            if(storage[authData.uid].favs!==undefined){
+              ac.favorites = storage[authData.uid].favs;
+            }
+            if(storage[authData.uid].blockedKeywords!==undefined){
+              ac.blockedCategories=storage[authData.uid].blockedKeywords;
+            }else{
+              ac.blockedCategories=[];
             if(storage[authData.uid]!==undefined){
               if(storage[authData.uid].keywords!==undefined){
                 ac.categories=storage[authData.uid].keywords;
@@ -141,7 +151,9 @@
                 ac.blockedCategories=[];
               }
             }
-          });
+          }
+            }
+          );
           userService.changeLogInState(true, false);
           userService.getFavs();
           updateFireBase();
@@ -311,7 +323,6 @@
     });
 
     function updateFireBase(){
-      console.log("Account Ctrl says the favs are: ", ac.favorites);
       var fireBaseObj={};
       for(var i=0;i<ac.blockedCategories.length;i++){
         ac.blockedCategories[i].id=i;
