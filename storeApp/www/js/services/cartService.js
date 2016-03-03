@@ -28,7 +28,7 @@ function cartService($http) {
 
       total += parseInt(cs.totalPriceArr[i], 10);
   }
-    
+
     cs.actualPrice = total;
     return cs.actualPrice;
   }
@@ -79,4 +79,4 @@ function cartService($http) {
     cs.totalPriceArr.splice(currIndex, 1);
     totalPrice();
   }
-}
+
