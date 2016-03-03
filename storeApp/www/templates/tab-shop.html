@@ -25,7 +25,7 @@
             <br>
             <img ng-src="{{product.mediumImage}}" class="itemImg"><br>
             <button class="button button-balanced buyButton" ng-click="sc.addToCart(product); buyToggle = !buyToggle" ng-hide="buyToggle">
-              <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice}} &nbsp; <i class="ion-bag"></i></span>
+              <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice | number:2 }} &nbsp; <i class="ion-bag"></i></span>
             </button>
             <span class="button button-balanced" ng-show="buyToggle">
               <span class="productDetails"><i class="ion-social-usd"></i> Added! &nbsp; <i class="ion-bag"></i></span>
