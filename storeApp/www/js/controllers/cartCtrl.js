@@ -14,12 +14,22 @@ cartCtrl.$inject = ['cartService','$scope','$timeout'];
     cc.deleteCurrent = cartService.deleteCurrent;
     cc.actualPrice = cartService.totalPrice;
     cc.endGameTotal = cartService.endGameTotal;
+<<<<<<< HEAD
+=======
+    cc.remove = removeFromCart;
+>>>>>>> 06bc404f73aaa32aad504ecb97122c1b54826bc3
     $scope.$on("$ionicView.beforeEnter",function(){
       $timeout(function(){
-        cc.actualPrice =  cartService.totalPrice();
+        cc.actualPrice = cartService.totalPrice();
         //console.log('actual price is'+cc.actualPrice);
       });
     });
+
+    function removeFromCart(currIndex) {
+      cc.deleteCurrent(currIndex);
+      cc.actualPrice = cartService.totalPrice();
+    }
+
     }
 
 })();

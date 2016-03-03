@@ -120,3 +120,29 @@ i.largerIcon {
   -o-transition:all linear 0.3s;
   transition:all linear 0.3s;
 }
+
+.cartpadding {
+  padding: 20px 10px 10px 10px !important;
+  bottom: 0 !important;
+}
+.customBg .customBg .pane, .customBg ion-content {
+  -webkit-box-shadow: inset 0px 0px 34px -16px rgba(0,0,0,0.25);
+  -moz-box-shadow: inset 0px 0px 34px -16px rgba(0,0,0,0.25);
+  box-shadow: inset 0px 0px 34px -16px rgba(0,0,0,0.25);
+  background: #86d7e0; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #86d7e0 0%, #6c80b7 100%); /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #86d7e0 0%,#6c80b7 100%); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #86d7e0 0%,#6c80b7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86d7e0', endColorstr='#6c80b7',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.customBg ion-content .productDetailBG {
+  background-color: white !important;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+/*.customBg div.bord {*/
+  /*background-color: rgba(2, 134, 157, 0.29) !important;*/
+  /*border: none !important;*/
+/*}*/
+
