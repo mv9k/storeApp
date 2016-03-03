@@ -17,6 +17,9 @@ function cartService($http) {
   cs.deleteCurrent = deleteCurrent;
   cs.addToCart = addToCart;
   cs.buyIt = buyIt;
+  cs.deleteCurrent = deleteCurrent;
+  cs.addToCart = addToCart;
+  cs.buyIt = buyIt;
 
   function totalPrice(){
 
@@ -26,7 +29,6 @@ function cartService($http) {
       total += parseFloat(cs.totalPriceArr[i], 10);
     }
   }
-
     cs.actualPrice = total;
     return cs.actualPrice;
   }
@@ -77,4 +79,3 @@ function cartService($http) {
     cs.totalPriceArr.splice(currIndex, 1);
     totalPrice();
   }
-
