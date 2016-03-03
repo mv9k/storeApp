@@ -17,9 +17,6 @@ function cartService($http) {
   cs.deleteCurrent = deleteCurrent;
   cs.addToCart = addToCart;
   cs.buyIt = buyIt;
-  cs.deleteCurrent = deleteCurrent;
-  cs.addToCart = addToCart;
-  cs.buyIt = buyIt;
 
   function totalPrice(){
 
