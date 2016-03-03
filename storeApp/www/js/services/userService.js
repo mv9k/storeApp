@@ -62,8 +62,9 @@ function userService(){
   function getFavs(){
     var favs=[];
     ref.on("value", function(keys){
-      if(keys.val().users[us.thisUser.uid]!==undefined){
-        favs=keys.val().users[us.thisUser.uid].favs;
+      var id = us.usedGoogle?us.thisUser.id:us.thisUser.uid;
+      if(keys.val().users[id]!==undefined){
+        favs=keys.val().users[id].favs;
         //console.log("Firebase says the favs for this account are: ", keys.val().users[us.thisUser.uid]);
       }else{
       }
