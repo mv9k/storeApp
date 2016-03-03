@@ -7,7 +7,7 @@
   angular.module('cartModule', [])
     .controller('cartCtrl', cartCtrl);
 cartCtrl.$inject = ['cartService','$scope','$timeout'];
-  function cartCtrl(cartService,$scope,$timeout){
+  function cartCtrl(cartService,$scope,$timeout) {
     var cc = this;
     cc.buyIt = cartService.buyIt;
     cc.cartProducts = cartService.cartProducts;
@@ -16,8 +16,8 @@ cartCtrl.$inject = ['cartService','$scope','$timeout'];
     cc.endGameTotal = cartService.endGameTotal;
     cc.remove = removeFromCart;
 
-    $scope.$on("$ionicView.beforeEnter",function(){
-      $timeout(function(){
+    $scope.$on("$ionicView.beforeEnter", function () {
+      $timeout(function () {
         cc.actualPrice = cartService.totalPrice();
         //console.log('actual price is'+cc.actualPrice);
       });
@@ -27,5 +27,6 @@ cartCtrl.$inject = ['cartService','$scope','$timeout'];
       cc.deleteCurrent(currIndex);
       cc.actualPrice = cartService.totalPrice();
     }
+  }
 
 })();
