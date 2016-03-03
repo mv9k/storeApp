@@ -7,22 +7,27 @@ angular.module('cartService', [])
 
 function cartService($http) {
   var cs = this;
-
+  var ionicIs = 'awesome';
   cs.cartProducts = [];
+  cs.allCartItems = [];
+  cs.actualPrice = Number(0);
+  cs.cartItemIds = [];
+  cs.totalPriceArr = [];
+  cs.totalPrice = totalPrice;
   cs.deleteCurrent = deleteCurrent;
   cs.addToCart = addToCart;
   cs.buyIt = buyIt;
-  cs.buyIt = buyIt;
-  cs.allCartItems = [];
-  cs.cartItemIds = [];
-  cs.totalPrice = [];
-  cs.finalPrice = 0;
-  cs.totalPriceFunc = totalPriceFunc;
-
-  function totalPriceFunc(){
-    for(var i = 0; i<cs.totalPrice.length; i++){
-      cs.finalPrice += cs.totalPrice[i];
-    }
+  function totalPrice(){
+    alert('im here');
+    //console.log('total price array before anything'+cs.totalPriceArr);
+    var total = Number(0);
+    for(var i =0; i < cs.cartProducts.length; i++){
+      alert('here two');
+      total += parseInt(cs.totalPriceArr[i], 10);
+  }
+    alert('here three');
+    cs.actualPrice = total;
+    return cs.actualPrice;
   }
   function buyIt() {
     //window.open('http://c.affil.walmart.com/t/api02?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D' + product.itemId + '%7C1%26affp1%3DM1u8aZZoZbep0p3P7hVn_sT4Ry97xPSOvnILkAKRCH8%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi')
@@ -56,12 +61,12 @@ function cartService($http) {
     console.log(product);
     cs.cartProducts.push(product);
     cs.allCartItems.push(productLink);
-    cs.totalPrice.push(product.salePrice);
-    console.log(cs.totalPrice);
     cs.cartItemIds.push(product.itemId);
+    cs.totalPriceArr.push(product.salePrice);
   }
   function deleteCurrent(currIndex){
-    cs.cartProducts.splice(currIndex,1)
-  }
 
+    cs.cartProducts.splice(currIndex,1);
+    totalPrice();
+  }
 }

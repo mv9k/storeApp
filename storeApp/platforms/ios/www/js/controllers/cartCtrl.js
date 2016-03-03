@@ -6,15 +6,20 @@
 
   angular.module('cartModule', [])
     .controller('cartCtrl', cartCtrl);
-cartCtrl.$inject = ['cartService'];
-  function cartCtrl(cartService){
+cartCtrl.$inject = ['cartService','$scope','$timeout'];
+  function cartCtrl(cartService,$scope,$timeout){
     var cc = this;
     cc.buyIt = cartService.buyIt;
     cc.cartProducts = cartService.cartProducts;
     cc.deleteCurrent = cartService.deleteCurrent;
-    cc.totalPrice = cartService.totalPrice;
-    cc.finalPrice = cartService.finalPrice;
-    cc.totalPriceFunc = cartService.totalPriceFunc;
+    cc.actualPrice = cartService.totalPrice;
+    cc.endGameTotal = cartService.endGameTotal;
+    $scope.$on("$ionicView.beforeEnter",function(){
+      $timeout(function(){
+        cc.actualPrice =  cartService.totalPrice();
+        //console.log('actual price is'+cc.actualPrice);
+      });
+    });
     }
 
 })();

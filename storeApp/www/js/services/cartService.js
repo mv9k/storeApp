@@ -7,24 +7,28 @@ angular.module('cartService', [])
 
 function cartService($http) {
   var cs = this;
-
+  var ionicIs = 'awesome';
   cs.cartProducts = [];
-  cs.deleteCurrent = deleteCurrent;
-  cs.addToCart = addToCart;
-  cs.buyIt = buyIt;
-  cs.buyIt = buyIt;
   cs.allCartItems = [];
   cs.actualPrice = Number(0);
   cs.cartItemIds = [];
   cs.totalPriceArr = [];
   cs.totalPrice = totalPrice;
+  cs.deleteCurrent = deleteCurrent;
+  cs.addToCart = addToCart;
+  cs.buyIt = buyIt;
 
   function totalPrice(){
+
     //console.log('total price array before anything'+cs.totalPriceArr);
     var total = Number(0);
     for(var i =0; i < cs.cartProducts.length; i++){
       total += parseFloat(cs.totalPriceArr[i], 10);
     }
+
+      total += parseInt(cs.totalPriceArr[i], 10);
+  }
+    
     cs.actualPrice = total;
     return cs.actualPrice;
   }
@@ -73,5 +77,6 @@ function cartService($http) {
   function deleteCurrent(currIndex){
     cs.cartProducts.splice(currIndex,1);
     cs.totalPriceArr.splice(currIndex, 1);
+    totalPrice();
   }
 }
