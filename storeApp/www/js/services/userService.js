@@ -17,6 +17,7 @@ function userService(){
   us.blockedKeys=[];
   us.isLoggedIn=false;
   us.favs=[];
+  us.favNames=[];
   us.usedGoogle=false;
 
   //function vars
@@ -52,12 +53,17 @@ function userService(){
     for(var i=0;i<us.favs.length;i++){
       if(fav.itemId==us.favs[i].itemId){
         invalid=true;
+        console.log("Invalid because: ", fav, us.favs[i].itemId)
       }
     }
     if(!invalid){
+      console.log("I wonder if we're updating FireBase...");
       us.favs.push(fav);
+      us.favNames.push(fav.name);
+      updateFireBase();
+    }else{
+      console.log("Why didn't we update FireBase? ;(")
     }
-    //updateFireBase();
   }
   function getFavs(){
     var favs=[];
@@ -122,7 +128,7 @@ function userService(){
         }
       }
     }
-    us.usedGoogle?fireBaseObj[us.thisUser.id]={keywords: us.keys, blockedKeywords: us.blockedKeys, favs: us.favs}:fireBaseObj[us.thisUser.uid]={keywords: us.keys, blockedKeywords: us.blockedKeys, favs: us.favs};
+    us.usedGoogle?fireBaseObj[us.thisUser.id]={keywords: us.keys, blockedKeywords: us.blockedKeys, favs: us.favNames}:fireBaseObj[us.thisUser.uid]={keywords: us.keys, blockedKeywords: us.blockedKeys, favs: us.favNames};
     usersRef.update(fireBaseObj);
   }
 }

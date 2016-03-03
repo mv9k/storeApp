@@ -125,19 +125,10 @@
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
-            if(storage[authData.uid].keywords!==undefined){
-              ac.categories=storage[authData.uid].keywords
-            }
-            if(storage[authData.uid].favs!==undefined){
-              ac.favorites = storage[authData.uid].favs;
-            }
-            if(storage[authData.uid].blockedKeywords!==undefined){
-              ac.blockedCategories=storage[authData.uid].blockedKeywords;
-            }else{
-              ac.blockedCategories=[];
             if(storage[authData.uid]!==undefined){
               if(storage[authData.uid].keywords!==undefined){
                 ac.categories=storage[authData.uid].keywords;
+                userService.storeKeys(ac.categories);
                 if(storage[authData.uid].keywords.length>0) {
                   ac.showCat=false;
                 }
@@ -151,9 +142,7 @@
                 ac.blockedCategories=[];
               }
             }
-          }
-            }
-          );
+          });
           userService.changeLogInState(true, false);
           userService.getFavs();
           updateFireBase();

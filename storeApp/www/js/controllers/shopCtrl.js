@@ -174,7 +174,7 @@
         count++;
         sc.items=tempItems;
       }
-      if(us.getLogInState()&&us.keys.length!==0){
+      if(us.getLogInState()&&us.keys.length>0){
         $ionicLoading.show();
         repeat();
       }else if(userService.getKeys().length==0&&userService.getLogInState()){
