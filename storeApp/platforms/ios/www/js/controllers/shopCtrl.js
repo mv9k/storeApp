@@ -7,9 +7,13 @@
   angular.module('ShopCtrl', [])
     .controller('shopCtrl', shopCont);
 
-  shopCont.$inject = ["$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService"];
+  shopCont.$inject = ["$timeout", "$scope", "$state", "Products", "$ionicLoading", "Favs", "cartService", "userService", "detailService", "$ionicModal"];
 
-  function shopCont($scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService){
+  function shopCont($timeout, $scope, $state, Products, $ionicLoading, Favs, cartService, userService, detailService, $ionicModal){
+
+    $scope.toggle = false;
+    $scope.buyToggle = false;
+
     var sc = this;
     var fs = Favs;
     var cs = cartService;
@@ -20,7 +24,6 @@
     sc.listProducts = {items:[]};
     sc.items = [];
     sc.searchText = 'bike';
-
     sc.activeButton = activateButton;
     sc.addFav = addFavourite;
     sc.getProducts = getProducts;
@@ -71,7 +74,10 @@
     }
 
     function addToCart(product) {
-      cs.addToCart(product);
+      $timeout(function(){
+        cs.addToCart(product);
+
+      });
       console.log('added '+ product + ' to cart!');
     }
 
@@ -80,11 +86,23 @@
       sc.items=[];
       var count = 0;
       function repeat(){
+        var blocked=us.getBlockedKeys();
         Products.get(us.keys[count].key)
           .then(function(data){
             if(data.data.numItems!==0){
               for(var i=0;i<data.data.items.length;i++){
-                tempItems.push(data.data.items[i]);
+                var isBlocked=false;
+                for(var j=0;j<blocked.length;j++){
+                  var a = new RegExp(blocked[j].key, "g");
+                  if(data.data.items[i]!==undefined){
+                    if(a.test(data.data.items[i].name||a.test(data.data.items[i].longDescription))){
+                      isBlocked=true;
+                    }
+                  }
+                }
+                if(!isBlocked){
+                  tempItems.push(data.data.items[i]);
+                }
               }
             }
             if(count!==(us.keys.length)){
@@ -105,17 +123,43 @@
         count++;
         sc.items=tempItems;
       }
-      if(us.isLoggedIn){
+      if(us.getLogInState()){
         $ionicLoading.show();
         repeat();
-      }
-      else{
+      }else{
         alert("Please Sign In To Use This Feature");
       }
     }
-    if(us.isLoggedIn){
+    if(us.getLogInState()){
       getAssignedProducts();
     }
+
+    /////////////////////// Modal! /////////////////////////
+
+    $ionicModal.fromTemplateUrl('templates/info-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
 
   }
 

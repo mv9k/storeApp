@@ -13,7 +13,7 @@ cartCtrl.$inject = ['cartService','$scope','$timeout'];
     cc.cartProducts = cartService.cartProducts;
     cc.deleteCurrent = cartService.deleteCurrent;
     cc.actualPrice = cartService.totalPrice;
-    cc.endGameTotal = cartService.endGameTotal
+    cc.endGameTotal = cartService.endGameTotal;
     $scope.$on("$ionicView.beforeEnter",function(){
       $timeout(function(){
         cc.actualPrice =  cartService.totalPrice();
