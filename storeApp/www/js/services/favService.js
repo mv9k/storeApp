@@ -31,7 +31,7 @@ function favService(userService){
     if(!invalid){
       console.log("We're Adding a favorite!!!!", product);
       fs.favsArray.push(product);
-      userService.storeFavs(product.name);
+      userService.storeFavs(product);
       //console.log(userService.getFavs());
     }
   }
