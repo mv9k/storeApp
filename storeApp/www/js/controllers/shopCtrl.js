@@ -177,9 +177,12 @@
       if(us.getLogInState()&&us.keys.length!==0){
         $ionicLoading.show();
         repeat();
-      }else{
-        alert("Please Sign In To Use This Feature");
+      }else if(userService.getKeys().length==0&&userService.getLogInState()){
+        alert("Please assign categories in your account tab.");
         $ionicLoading.hide();
+      }
+      else {
+        alert("Please sign in to use this feature.")
       }
     }
     if(us.getLogInState()){
@@ -187,7 +190,7 @@
     }
     $scope.$on("$ionicView.beforeEnter",function(){
       $timeout(function(){
-        if(userService.getLogInState()){
+        if(userService.getLogInState()&&(userService.getKeys().length>0)){
           getFavs();
         }
       });
