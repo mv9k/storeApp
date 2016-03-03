@@ -25,8 +25,6 @@ function cartService($http) {
     for(var i =0; i < cs.cartProducts.length; i++){
       total += parseFloat(cs.totalPriceArr[i], 10);
     }
-
-      total += parseInt(cs.totalPriceArr[i], 10);
   }
 
     cs.actualPrice = total;
