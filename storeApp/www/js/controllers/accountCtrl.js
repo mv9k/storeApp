@@ -138,6 +138,9 @@
             if(storage[authData.uid]!==undefined){
               if(storage[authData.uid].keywords!==undefined){
                 ac.categories=storage[authData.uid].keywords;
+                if(storage[authData.uid].keywords.length>0) {
+                  ac.showCat=false;
+                }
               }
               if(storage[authData.uid].favs!==undefined){
                 ac.favorites = storage[authData.uid].favs;
@@ -177,6 +180,9 @@
               if(storage[authData.id].keywords!==undefined){
                 ac.categories=storage[authData.id].keywords;
                 userService.storeKeys(ac.categories);
+                if(storage[authData.id].keywords.length>0) {
+                  ac.showCat=false;
+                }
               }
               if(storage[authData.id].favs!==undefined){
                 ac.favorites = storage[authData.id].favs;

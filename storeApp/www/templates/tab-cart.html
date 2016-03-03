@@ -5,10 +5,14 @@
         <div class="card">
           <div class="productTitle item item-text-wrap"><h3>{{product.name}}</h3></div>
           <!--<div class="item item-text-wrap">{{product.shortDescription}}</div>-->
-          <img  class="col col-25" ng-src="{{product.thumbnailImage}}" style="float:left;">
+          <div class="row" style="text-align: center;">
+          <img  class="col" ng-src="{{product.thumbnailImage}}">
+          <div class="col col-30" style="margin-top: 40px;">
           <span style="color:orangered;">{{product.numReviews}}</span>
           <img ng-src="{{product.customerRatingImage}}">
-          <span class="col col-25" style="float:right; color:green; font-size:18pt;">${{product.salePrice}}</span>
+          </div>
+          <span class="col col-30" style="color:green; font-size:18pt; margin-top: 40px;">${{product.salePrice}}</span>
+          </div>
         </div>
         <ion-option-button class="button-assertive sizeUp" ng-click="cc.remove($index)"><i class="ion-close-circled largerIcon"></i></ion-option-button>
       </ion-item>
