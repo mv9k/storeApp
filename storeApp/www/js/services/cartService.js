@@ -15,17 +15,25 @@ function cartService($http) {
   cs.totalPriceArr = [];
   cs.totalPrice = totalPrice;
 <<<<<<< HEAD
+<<<<<<< HEAD
   cs.deleteCurrent = deleteCurrent;
   cs.addToCart = addToCart;
   cs.buyIt = buyIt;
 =======
 
 >>>>>>> 06bc404f73aaa32aad504ecb97122c1b54826bc3
+=======
+  cs.deleteCurrent = deleteCurrent;
+  cs.addToCart = addToCart;
+  cs.buyIt = buyIt;
+
+>>>>>>> 686fa4e1efb3ce37962a5481db89c626893fdc46
   function totalPrice(){
-    alert('im here');
+
     //console.log('total price array before anything'+cs.totalPriceArr);
     var total = Number(0);
     for(var i =0; i < cs.cartProducts.length; i++){
+<<<<<<< HEAD
 <<<<<<< HEAD
       alert('here two');
       total += parseInt(cs.totalPriceArr[i], 10);
@@ -35,6 +43,14 @@ function cartService($http) {
       total += parseFloat(cs.totalPriceArr[i], 10);
     }
 >>>>>>> 06bc404f73aaa32aad504ecb97122c1b54826bc3
+=======
+      total += parseFloat(cs.totalPriceArr[i], 10);
+    }
+
+      total += parseInt(cs.totalPriceArr[i], 10);
+  }
+
+>>>>>>> 686fa4e1efb3ce37962a5481db89c626893fdc46
     cs.actualPrice = total;
     return cs.actualPrice;
   }
@@ -82,6 +98,7 @@ function cartService($http) {
   }
   function deleteCurrent(currIndex){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     cs.cartProducts.splice(currIndex,1);
     totalPrice();
@@ -89,5 +106,10 @@ function cartService($http) {
     cs.cartProducts.splice(currIndex,1);
     cs.totalPriceArr.splice(currIndex, 1);
 >>>>>>> 06bc404f73aaa32aad504ecb97122c1b54826bc3
+=======
+    cs.cartProducts.splice(currIndex,1);
+    cs.totalPriceArr.splice(currIndex, 1);
+    totalPrice();
+>>>>>>> 686fa4e1efb3ce37962a5481db89c626893fdc46
   }
-}
+
