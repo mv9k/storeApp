@@ -51,7 +51,7 @@
         <div>
           <form ng-submit="ac.addCategory()">
             <div class="item item-input-inset item item-input newCategoryText" style="padding: 0" id="newCategoryInput">
-              <label class="item-input-wrapper item item-input" >
+              <label class="item-input-wrapper item item-input newCategoryText">
                 <input input type="text" placeholder="New Category" class="newCategoryText" ng-model="ac.newCategory">
               </label>
               <button type="submit" class="button button-medium button-clear button-positive">
@@ -75,7 +75,7 @@
         <div ng-show="ac.showBlockedCat">
           <form ng-submit="ac.addBlockedCategory()">
             <div class="item item-input-inset item item-input newCategoryText" style="padding: 0" id="newBlockedCategoryInput">
-              <label class="item-input-wrapper item item-input" >
+              <label class="item-input-wrapper item item-input newCategoryText">
                 <input input type="text" placeholder="New Blocked Category" class="newCategoryText" ng-model="ac.newBlockedCategory">
               </label>
               <button type="submit" class="button button-medium button-clear button-positive">
