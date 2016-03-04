@@ -7,8 +7,9 @@
   angular.module('AcctCtrl', [])
     .controller('AccountCtrl', acctCont);
 
-  acctCont.$inject = ["$scope" , "$ionicPopup", "$state", "userService"];
-  function acctCont($scope, $ionicPopup, $state, userService){
+  acctCont.$inject = ["$scope" , "$ionicPopup", "userService", "$ionicModal"];
+  function acctCont($scope, $ionicPopup, userService, $ionicModal){
+
     var ac = this;
     //Commit worked #1
 
@@ -90,9 +91,9 @@
         } else {
           console.log("Successfully created user account with uid:", userData.uid);
           logIntoFireAccount();
-          fireBaseObj[userData.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories};
+          fireBaseObj[userData.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories, favs: []};
           usersRef.set(fireBaseObj);
-          userService.changeLogInState(true);
+          userService.changeLogInState(true, false);
         }
       });
     }
@@ -114,7 +115,7 @@
             if(keys.val().users!==undefined){
               storage=keys.val().users;
             }else{
-              usersRef.set({users: []});
+              //usersRef.set({users: []});
             }
           }, function(errorObject){
             console.log("The read failed: " + errorObject.code);
@@ -124,16 +125,27 @@
             ac.validatedEmail = ac.email;
             ac.thisUser = authData;
             ac.profileImg=authData.password.profileImageURL;
-            ac.categories=storage[authData.uid].keywords;
-            if(storage[authData.uid].blockedKeywords!==undefined){
-              ac.blockedCategories=storage[authData.uid].blockedKeywords;
-            }else{
-              ac.blockedCategories=[];
+            if(storage[authData.uid]!==undefined){
+              if(storage[authData.uid].keywords!==undefined){
+                ac.categories=storage[authData.uid].keywords;
+                userService.storeKeys(ac.categories);
+                if(storage[authData.uid].keywords.length>0) {
+                  ac.showCat=false;
+                }
+              }
+              if(storage[authData.uid].favs!==undefined){
+                ac.favorites = storage[authData.uid].favs;
+              }
+              if(storage[authData.uid].blockedKeywords!==undefined){
+                ac.blockedCategories=storage[authData.uid].blockedKeywords;
+              }else{
+                ac.blockedCategories=[];
+              }
             }
-            userService.storeKeys(ac.categories);
-
-            userService.changeLogInState(true);
           });
+          userService.changeLogInState(true, false);
+          userService.getFavs();
+          updateFireBase();
           $("#passBox").css("border-bottom", "solid lightgrey 1px");
           $("#emailBox").css("border-bottom", "solid lightgrey 1px");
           console.log("Authenticated successfully with payload:", authData);
@@ -153,9 +165,24 @@
             ac.profileImg=authData.google.profileImageURL;
             ac.thisUser=authData.google;
             ac.usedGoogle=true;
-            ac.categories=storage[ac.thisUser.id].keywords;
-            userService.storeKeys(ac.categories);
-            userService.changeLogInState(true);
+            if(storage[authData.id]!==undefined){
+              if(storage[authData.id].keywords!==undefined){
+                ac.categories=storage[authData.id].keywords;
+                userService.storeKeys(ac.categories);
+                if(storage[authData.id].keywords.length>0) {
+                  ac.showCat=false;
+                }
+              }
+              if(storage[authData.id].favs!==undefined){
+                ac.favorites = storage[authData.id].favs;
+              }
+              if(storage[authData.id].blockedKeywords!==undefined){
+                ac.blockedCategories=storage[authData.id].blockedKeywords;
+              }else{
+                ac.blockedCategories=[];
+              }
+            }
+            userService.changeLogInState(true, true);
           });
           //$state.go("tab.account");
         }
@@ -258,6 +285,7 @@
       ac.showBlockedCat?ac.showBlockedCat=false:ac.showBlockedCat=true;
       ac.showBlockedCat?$("#toggleBlockedCat").html("Hide Categories"):$("#toggleBlockedCat").html("Show Categories");
     }
+
     //Form validation
     $("body").keyup(function () {
       if(!ac.isLoggedIn){
@@ -293,10 +321,39 @@
         ac.categories[i].id=i;
         delete ac.categories[i].$$hashKey
       }
-      ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories, blockedKeywords: ac.blockedCategories}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories};
+      ac.usedGoogle?fireBaseObj[ac.thisUser.id]={keywords: ac.categories, blockedKeywords: ac.blockedCategories, favs: ac.favorites}:fireBaseObj[ac.thisUser.uid]={keywords: ac.categories, blockedKeywords: ac.blockedCategories, favs: ac.favorites};
       userService.storeKeys(ac.categories);
       userService.storeBlockedKeys(ac.blockedCategories);
+      userService.storeUser(ac.thisUser);
       usersRef.update(fireBaseObj);
     }
+
+
+    /////////////////////// Modal! /////////////////////////
+
+    $ionicModal.fromTemplateUrl('templates/info-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
   }
 }());
