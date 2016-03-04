@@ -18,6 +18,7 @@ angular.module('storeApp', [
   'productServices',
   'AcctCtrl',
   'cartModule',
+  'tabModule',
   'ShopCtrl',
   'favCtrl',
   'favServices',
@@ -55,7 +56,8 @@ angular.module('storeApp', [
     .state('tab', {
       url: '/tab',
       abstract: true,
-      templateUrl: 'templates/tabs.html'
+      templateUrl: 'templates/tabs.html',
+      controller: 'tabCtrl as tc'
     })
 
     // Each tab has its own nav history stack:

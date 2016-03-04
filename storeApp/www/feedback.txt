@@ -1,0 +1,5 @@
+Adam:
+'remove the buy button from every item and make one that buys all the items'
+
+Brinley:
+'Create account is confusing make create account bring you to another page that lets you create one'
