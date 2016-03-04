@@ -42,9 +42,6 @@
     }
 
     function getProducts() {
-      console.log('searched --> ' + sc.searchText);
-      console.log(Products.all(sc.searchText));
-
       $ionicLoading.show();
       Products.get(sc.searchText)
         .then(getSuccess, getFail);
@@ -52,7 +49,6 @@
 
     function getSuccess(data) {
       $ionicLoading.hide();
-      console.log('success');
       sc.listProducts = data.data;
       sc.items = data.data.items;
       console.log(data.data.items);
@@ -147,7 +143,6 @@
                 for(var j=0;j<ourFavs.length;j++){
                   if(ourFavs[j].itemId==data.data.items[i].itemId){
                     isFav=true;
-                    console.log("Found a fav! ", ourFavs[j]);
                   }
                 }
                 if(!isBlocked){
@@ -182,7 +177,8 @@
         $ionicLoading.hide();
       }
       else {
-        alert("Please sign in to use this feature.")
+        alert("Please sign in to use this feature.");
+        $ionicLoading.hide();
       }
     }
     if(us.getLogInState()&&us.keys.length>0){

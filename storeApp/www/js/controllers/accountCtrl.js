@@ -219,7 +219,7 @@
       if(!invalid){
         ac.categories.push({key: ac.newCategory, id: ac.categories.length});
         ac.newCategory="";
-        $("#newCategoryInput").css("border", "solid lightgrey 1px");
+        $("#newCategoryInput").css("border", "solid white 1px");
         updateFireBase();
       }
       else{
@@ -259,7 +259,7 @@
       if(!invalid){
         ac.blockedCategories.push({key: ac.newBlockedCategory, id: ac.blockedCategories.length});
         ac.newBlockedCategory="";
-        $("#newBlockedCategoryInput").css("border", "solid lightgrey 1px");
+        $("#newBlockedCategoryInput").css("border", "solid white 1px");
         updateFireBase();
       }
       else{

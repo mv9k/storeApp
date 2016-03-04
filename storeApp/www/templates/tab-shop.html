@@ -18,7 +18,7 @@
         </button>
       </ion-item>
 
-      <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade item item-text-wrap">
+      <ion-item ng-repeat="product in sc.items track by $index" class="nga-default nga-fade item item-text-wrap" ng-click="sc.getDetail(product)" href="#/tab/dash/{{sc.product.itemId}}">
         <div class="animated pulse">
             <i class="ion-chevron-right chevronRight"></i>
             <div class="productTitle item-text-wrap"><h3>{{product.name}}</h3></div>

@@ -15,9 +15,18 @@
 }
 .newCategoryText{
   text-align: left;
-  border: solid lightgrey 1px;
+  border: solid white 1px;
   font-size: x-large;
   margin-bottom: 1px;
+  background-color: white; !important
+  border-radius: 0; !important
+}
+.item-input-inset .item-input-wrapper input {
+  padding-left: 4px;
+  height: 29px;
+  background: white;
+  line-height: 18px;
+  border-radius: 0;
 }
 .profileImg{
   width: 50px;
