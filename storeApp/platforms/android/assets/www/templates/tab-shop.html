@@ -23,10 +23,14 @@
             <i class="ion-chevron-right chevronRight"></i>
             <div class="productTitle item-text-wrap"><h3>{{product.name}}</h3></div>
             <br>
+<<<<<<< HEAD:storeApp/platforms/ios/www/templates/tab-shop.html
             <a href="#/tab/dash/{{sc.product.itemId}}" ng-click="sc.getDetail(product)">
               <img ng-src="{{product.mediumImage}}" class="itemImg">
             </a>
               <br>
+=======
+            <img ng-src="{{product.mediumImage}}" class="itemImg"><br>
+>>>>>>> gmoney:storeApp/platforms/android/assets/www/templates/tab-shop.html
             <button class="button button-balanced buyButton" ng-click="sc.addToCart(product); buyToggle = !buyToggle" ng-hide="buyToggle">
               <span class="productDetails"><i class="ion-social-usd"></i> {{product.salePrice | number:2 }} &nbsp; <i class="ion-bag"></i></span>
             </button>

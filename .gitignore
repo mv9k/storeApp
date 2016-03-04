@@ -32,3 +32,5 @@ storeApp/plugins/fetch.json
 
 storeApp/www.zip
 
+
+*.json

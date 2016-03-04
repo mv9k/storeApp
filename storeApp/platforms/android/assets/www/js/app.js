@@ -23,9 +23,13 @@ angular.module('storeApp', [
   'favServices',
   'user.service',
   'detailCtrl',
+<<<<<<< HEAD
   'detailService',
   'ngSanitize'
 ])
+=======
+  'detailService'])
+>>>>>>> gmoney
 
 
 
