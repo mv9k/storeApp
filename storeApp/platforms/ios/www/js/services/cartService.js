@@ -5,21 +5,6 @@ angular.module('cartService', [])
 
   .service('cartService',cartService);
 
-  //.config(function($cordovaInAppBrowserProvider) {
-  //
-  //  var defaultOptions = {
-  //    location: 'no',
-  //    clearcache: 'no',
-  //    toolbar: 'no'
-  //  };
-  //
-  //  document.addEventListener(function () {
-  //
-  //    $cordovaInAppBrowserProvider.setDefaultOptions(options)
-  //
-  //  }, false);
-  //});
-
 cartService.$inject=["$http"];
 
 
