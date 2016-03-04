@@ -4,6 +4,11 @@ Adam:
 Brinley:
 'Create account is confusing make create account bring you to another page that lets you create one'
 
+Sierra:
+"It needs to tell you what the problem is every time the email box lights up red"
+
+Colen:
+"Looks really great but it's really easy to break it"
 
 ==================
 Claire :
