@@ -24,7 +24,9 @@ angular.module('storeApp', [
   'favServices',
   'user.service',
   'detailCtrl',
-  'detailService'])
+  'detailService',
+  'ngSanitize'
+])
 
 
 

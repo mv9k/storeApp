@@ -12,11 +12,9 @@
 
     var ac = this;
     //Commit worked #1
-
     //Firebase URL
     var ref = new Firebase("https://storeappformatc.firebaseio.com");
     var usersRef = ref.child("users");
-
     //Temporary Get values
     var storage=[];
     ref.on("value", function(keys){
@@ -28,9 +26,16 @@
     }, function(errorObject){
       console.log("The read failed: " + errorObject.code);
     });
-
-    //User State Vars
     ac.isLoggedIn=false;
+    ac.myURL = window.location.href;
+    //alert($routeParams);
+    if(ac.myURL.indexOf('loggedin') != -1){
+      ac.isLoggedIn = true;
+      ac.theirCodedName = ac.myURL.split('http://localhost:8100/#/tab/account?=loggedin&user=');
+      ac.theirName = ac.theirCodedName[1].replace(/%20/g, " ");
+
+    }
+    //User State Vars
     ac.isCreatingAcc=false;
     ac.usedGoogle=false;
     ac.showCat=false;

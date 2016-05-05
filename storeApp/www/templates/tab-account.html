@@ -8,7 +8,7 @@
     <div ng-if="!ac.isLoggedIn">
       <ng-form>
         <div class="bord">
-          <h1>Log in</h1>
+          <h1>Log In</h1>
           <span style="color: red" id="err"></span>
           <div class="list" id="loginDiv">
           <label class="item item-input txtBord item-floating-label" id="emailBox">
@@ -27,6 +27,9 @@
           <button class="button button-block button-assertive" ng-click="ac.googleLogin()">
             Sign in with Google
           </button>
+          <a class="button button-block button-energized" ng-href="http://localhost:8081/auth/facebook">
+            Sign in with Facebook
+          </a>
           <a class="button button-clear button-positive">
             Forgot Password?
           </a>
@@ -38,14 +41,14 @@
     </div>
     <div ng-if="ac.isLoggedIn">
       <h3>
-        Welcome {{ac.validatedEmail}}!
+        Welcome {{ac.theirName}}!
       </h3>
       <img ng-src="{{ac.profileImg}}" class="profileImg">
       <br>
       <br>
       <div class="bord">
         <br>
-        <div ng-if="ac.emptyCat">Looks like you havent set up your preferred categories! Enter your categories in the text input below.</div>
+        <div ng-if="ac.emptyCat">Looks like you haven't set up your preferred categories! Enter your categories in the text input below.</div>
         <br>
         <!--<button id="toggleCat" class="button button-block button-positive" ng-click="ac.toggleCat()">Show Categories</button>-->
         <div>

@@ -23,7 +23,13 @@ angular.module('storeApp', [
   'favServices',
   'user.service',
   'detailCtrl',
+<<<<<<< HEAD
   'detailService'])
+=======
+  'detailService',
+  'ngSanitize'
+])
+>>>>>>> 4acae7792517256c0fc7d2175d315a9d1aed946e
 
 
 
